@@ -36,7 +36,7 @@ export interface Extra {
 }
 
 
-export interface BestellItem {
+export interface SpeiseBestellt {
     speise: Speise;
     menge: number;
     extras?: Extra[];
@@ -44,8 +44,8 @@ export interface BestellItem {
     kommentar?: string;
 }
 
-export interface Bestellung {
-    items: BestellItem[];
+export interface BestellungKomplett {
+    speisen: SpeiseBestellt[];
     gesamtpreis: number;
     bestellt: Date;
     bekommen: Date;

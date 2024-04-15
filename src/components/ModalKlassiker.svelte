@@ -1,32 +1,50 @@
 <script lang="ts">
-  import { bestellungStore } from "$lib/stores/stores";
-  import type { Speise, BestellItem } from "$lib/types";
+  import {
+    StoreSpeise,
+    StoreSpeiseBestellt,
+    StoreBestellungKomplett,
+    resetSpeiseBestellt,
+  } from "$lib/stores/stores";
 
-  export let speise: Speise;
-  let menge = 1;
-  let kommentar = "";
-
-  // Funktion zur Berechnung des Gesamtpreises
-  function calculateGesamtpreis(preis: number, menge: number): number {
-    return preis * menge;
-  }
+  $: preisShown = $StoreSpeiseBestellt.menge * $StoreSpeise.preis;
 
   // Funktion, um Artikel zur Bestellung hinzuzufügen
-  function addToBestellung() {
-    const preis = calculateGesamtpreis(speise.preis, menge);
-    const newItem: BestellItem = {
-      speise,
-      menge,
-      preis,
-      kommentar,
-    };
-    bestellungStore.update((bestellung) => ({
-      ...bestellung,
-      items: [...bestellung.items, newItem],
-      gesamtpreis: bestellung.gesamtpreis + preis,
-    }));
-    menge = 1;
-    kommentar = "";
+  function addToBestellung(current) {
+    StoreSpeiseBestellt.update(current) => {
+      const updatedSpeise = { ...current.speise }; // Sicherstellen, dass wir die Speise richtig kopieren
+      const updatedMenge = current.menge;
+      const updatedPreis = preisShown;
+
+      // Aktualisiere StoreBestellungKomplett innerhalb des Callbacks von StoreSpeiseBestellt
+      StoreBestellungKomplett.update((bestellung) => {
+        const updatedSpeisen = [
+          ...bestellung.speisen,
+          {
+            speise: updatedSpeise,
+            menge: updatedMenge,
+            preis: updatedPreis,
+            kommentar: current.kommentar,
+          },
+        ];
+        const updatedGesamtpreis = bestellung.gesamtpreis + updatedPreis;
+
+        return {
+          ...bestellung,
+          speisen: updatedSpeisen,
+          gesamtpreis: updatedGesamtpreis,
+        };
+      });
+
+      // Gibt den aktualisierten Zustand zurück, um den Store konsistent zu halten
+      return {
+        ...current,
+        speise: updatedSpeise,
+        menge: updatedMenge,
+        preis: updatedPreis,
+      };
+    });
+
+    resetSpeiseBestellt();
     closeDialog();
   }
 
@@ -50,18 +68,25 @@
   <!-- svelte-ignore a11y-no-static-element-interactions -->
 
   <div on:click|stopPropagation>
-    <h2>{speise.nr}. {speise.name}</h2>
-    {#each speise.zutaten as zutat}
+    <h2>{$StoreSpeise.nr}. {$StoreSpeise.name}</h2>
+    {#each $StoreSpeise.zutaten as zutat}
       <button>{zutat.menge} {zutat.name}</button>
     {/each}
-    <textarea bind:value={kommentar} placeholder="Sonderwünsche..."></textarea>
+    <textarea
+      bind:value={$StoreSpeiseBestellt.kommentar}
+      placeholder="Sonderwünsche..."
+    ></textarea>
     <div>
-      <button on:click={() => menge > 1 && menge--}>-</button>
-      {menge}
-      <button on:click={() => menge++}>+</button>
+      <button
+        on:click={() =>
+          $StoreSpeiseBestellt.menge > 1 && $StoreSpeiseBestellt.menge--}
+        >➖</button
+      >
+      {$StoreSpeiseBestellt.menge}
+      <button on:click={() => $StoreSpeiseBestellt.menge++}>➕</button>
     </div>
-    <button class="cta" on:click={addToBestellung}
-      >{calculateGesamtpreis(speise.preis, menge).toFixed(2)} €</button
+    <button class="cta" on:click={addToBestellung(StoreSpeise)}
+      >{preisShown.toFixed(2)} €</button
     >
   </div>
 </dialog>

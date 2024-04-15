@@ -4,23 +4,32 @@
   import { Klassiker } from "$lib/data/klassiker";
   import { Pitas } from "$lib/data/pitas";
   import { Ueberbacken } from "$lib/data/ueberbacken";
-  import type { Bestellung, Speise } from "$lib/types";
+  import type { Speise } from "$lib/types";
 
-  import { bestellungStore } from "$lib/stores/stores";
-  let bestellung: Bestellung;
-  bestellungStore.subscribe((value) => {
-    bestellung = value;
-  });
+  import {
+    StoreSpeise,
+    StoreSpeiseBestellt,
+    StoreBestellungKomplett,
+  } from "$lib/stores/stores";
 
   import ModalKlassiker from "../../components/ModalKlassiker.svelte";
+  import Resetter from "../../components/Resetter.svelte";
 
-  let itemSelected: Speise;
   let showModal = false;
 
   function openModal(item: Speise) {
+    StoreSpeise.set(item);
+    console.log($StoreSpeise);
     showModal = true;
-    itemSelected = item;
   }
+
+  $: {
+    console.log("Speise", $StoreSpeise)
+    console.log("SpeiseBestellt", $StoreSpeiseBestellt)
+    console.log("BestellungKomplett", $StoreBestellungKomplett)
+  }
+
+
 </script>
 
 <h1>Bestellaufnahme</h1>
@@ -68,24 +77,29 @@
   </div>
 
   <div class="bestellung">
-    {#if bestellung.items.length > 0}
+    {#if $StoreBestellungKomplett.speisen.length > 0}
       <h2>Neue Bestellung</h2>
-      <button>❌</button>
+      <Resetter />
       <div>
-        {#each bestellung.items as item}
-          <h4>{item.menge} x {item.speise.name}</h4>
-          <p>{item.kommentar}</p>
+        {#each $StoreBestellungKomplett.speisen as SpeiseBestellt}
+          <h4>{SpeiseBestellt.menge} x {SpeiseBestellt.speise.name}</h4>
+          <p>{SpeiseBestellt.kommentar}</p>
         {/each}
-        <h3>Gesamtpreis: {bestellung.gesamtpreis.toFixed(2)} €</h3>
+        <h3>
+          Gesamtpreis: {$StoreBestellungKomplett.gesamtpreis.toFixed(2)} €
+        </h3>
       </div>
       <button>Bestellung aufnehmen</button>
     {/if}
   </div>
 </div>
 
-{#if itemSelected}
-  <ModalKlassiker bind:showModal speise={itemSelected} />
+
+{#if showModal}
+  <ModalKlassiker bind:showModal />
 {/if}
+
+
 
 <style>
   .home {
@@ -95,5 +109,10 @@
 
   .menu {
     grid-area: auto / span 3;
+    background-color: beige;
+  }
+
+  .bestellung {
+    background-color: darkseagreen;
   }
 </style>
