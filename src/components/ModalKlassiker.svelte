@@ -7,44 +7,27 @@
   } from "$lib/stores/stores";
 
   $: preisShown = $StoreSpeiseBestellt.menge * $StoreSpeise.preis;
+  $: localSpeise = $StoreSpeise;
+  $: localSpeiseBestellt = $StoreSpeiseBestellt
 
   // Funktion, um Artikel zur Bestellung hinzuzufügen
-  function addToBestellung(current) {
-    StoreSpeiseBestellt.update(current) => {
-      const updatedSpeise = { ...current.speise }; // Sicherstellen, dass wir die Speise richtig kopieren
-      const updatedMenge = current.menge;
-      const updatedPreis = preisShown;
+  function addSpeiseBestellt() {
+    const speiseToAdd = {
+      ... localSpeiseBestellt,
+      speise: localSpeise,
+      preis: preisShown
+    }
 
       // Aktualisiere StoreBestellungKomplett innerhalb des Callbacks von StoreSpeiseBestellt
-      StoreBestellungKomplett.update((bestellung) => {
-        const updatedSpeisen = [
-          ...bestellung.speisen,
-          {
-            speise: updatedSpeise,
-            menge: updatedMenge,
-            preis: updatedPreis,
-            kommentar: current.kommentar,
-          },
-        ];
-        const updatedGesamtpreis = bestellung.gesamtpreis + updatedPreis;
-
+      StoreBestellungKomplett.update((current) => {
         return {
-          ...bestellung,
-          speisen: updatedSpeisen,
-          gesamtpreis: updatedGesamtpreis,
+          ...current,
+          speisen: [...current.speisen, speiseToAdd],
+          gesamtpreis: current.gesamtpreis + preisShown
         };
       });
-
-      // Gibt den aktualisierten Zustand zurück, um den Store konsistent zu halten
-      return {
-        ...current,
-        speise: updatedSpeise,
-        menge: updatedMenge,
-        preis: updatedPreis,
-      };
-    });
-
     resetSpeiseBestellt();
+
     closeDialog();
   }
 
@@ -73,8 +56,8 @@
       <button>{zutat.menge} {zutat.name}</button>
     {/each}
     <textarea
-      bind:value={$StoreSpeiseBestellt.kommentar}
       placeholder="Sonderwünsche..."
+      bind:value={$StoreSpeiseBestellt.kommentar}
     ></textarea>
     <div>
       <button
@@ -85,7 +68,7 @@
       {$StoreSpeiseBestellt.menge}
       <button on:click={() => $StoreSpeiseBestellt.menge++}>➕</button>
     </div>
-    <button class="cta" on:click={addToBestellung(StoreSpeise)}
+    <button class="cta" on:click={addSpeiseBestellt}
       >{preisShown.toFixed(2)} €</button
     >
   </div>
