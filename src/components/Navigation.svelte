@@ -1,6 +1,7 @@
 <nav>
-    <a href="/home">Bestellaufnahme</a>
-    <a href="/kueche">Küchenübersicht</a>
-    <a href="/karte">Karte</a>
-    <a href="/archiv">Archiv</a>
+    <a href="/menu">MENU</a>
+    <a href="/_home">Bestellaufnahme</a>
+    <a href="/_kueche">Küchenübersicht</a>
+    <a href="/_karte">Karte</a>
+    <a href="/_archiv">Archiv</a>
 </nav>

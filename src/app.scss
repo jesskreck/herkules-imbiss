@@ -1,1 +1,54 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
+
+@font-face {
+    font-family: "GeneralSans-Variable";
+    src: url("/fonts/GeneralSans-Variable.woff2") format("woff2"),
+        url("/fonts/GeneralSans-Variable.woff") format("woff"),
+        url("/fonts/GeneralSans-Variable.ttf") format("truetype");
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+:root {
+    --primary: #4DC2F0;
+    --secondary: #F61067;
+    --grey: #999999;
+    --border: #E2E4E8;
+}
+
+
+
+//////////////////RESETS
+
+html,
+body {
+    font-family: "GeneralSans-Variable", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+// remove built-in form typography margin: remove default margin on text tags
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+// Avoid text overflows
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
