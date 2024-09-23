@@ -1,1 +1,101 @@
-/* Variables and mixins declared here will be available in all other SCSS files */
+/*-----Colors-----*/
+
+$bg-color: linear-gradient(105.94deg, rgba(226, 228, 232, 0.36) 8.92%, rgba(226, 228, 232, 0.48) 40.14%, rgba(226, 228, 232, 0.6) 91.08%);
+
+$primary: #4DC2F0;
+$secondary: #F61067;
+
+$grey: #999999;
+$color-border: #E2E4E8;
+
+$gradient: linear-gradient(180deg, #4DC2F0 0%, #F61067 100%);
+
+// $tierary: #c8ffa5;
+// $quarterary: #ffc3ee;
+
+
+/*-----Fonts-----*/
+
+@font-face {
+    font-family: "GeneralSans-Variable";
+    src: url("/fonts/GeneralSans-Variable.woff2") format("woff2"),
+        url("/fonts/GeneralSans-Variable.woff") format("woff"),
+        url("/fonts/GeneralSans-Variable.ttf") format("truetype");
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+
+/*-----Typography-----*/
+
+$font-size-basis: 16px;
+$line-height: 1.5;
+$chperline: 70ch;
+$smaller-text: 80%;
+$bigger-text: 120%;
+
+
+/*-----Paddings & Gap-----*/
+
+$reg-space: 2rem;
+$sm-space: calc($reg-space / 2);
+$xs-space: calc($sm-space / 2);
+$lg-space: calc($reg-space * 2);
+$padding-btn: $sm-space $xs-space;
+
+
+/*-----Borders-----*/
+
+$border-solid: 1px solid;
+$border-radius: 50px;
+$border-radius-soft: 10px;
+
+
+/*-----Grid Columns-----*/
+
+$grid-center: "4/10";
+$grid-first-third: "1/4";
+$grid-last-thirds: "4/13";
+$grid-last-third: "10/13";
+$grid-first-half: "1/7";
+$grid-second-half: "7/13";
+$grid-fullwidth: "1/13";
+
+
+/*-----Transitions-----*/
+
+$animation-transition: 0.2s ease-in;
+
+
+
+/*-----Elevations-----*/
+
+$elevation-8: 0 8px 10px rgba(0, 0, 0, 0.12), 0 3px 14px rgba(0, 0, 0, 0.08),
+  0 5px 5px rgba(0, 0, 0, 0.14);
+$elevation-4: 0 4px 5px rgba(0, 0, 0, 0.06), 0 1.5px 7px rgba(0, 0, 0, 0.04),
+  0 2.5px 2.5px rgba(0, 0, 0, 0.07);
+
+
+
+/*-----Media Queries-----*/
+
+$breakpoints: (
+  "sm": 576px,
+  "md": 768px,
+  "lg": 992px,
+  "xl": 1200px,
+);
+
+
+/*-----Mixins-----*/
+
+@mixin grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  
+    @media screen and (max-width: map-get($breakpoints, "md")) {
+      display: flex;
+      flex-direction: column;
+    }
+  }

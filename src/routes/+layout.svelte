@@ -5,7 +5,6 @@
     import { initializeApp } from 'firebase/app';
     import { getFirestore } from 'firebase/firestore';
     import { getAuth } from 'firebase/auth';
-  import Navigation from "../components/Navigation.svelte";
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -14,6 +13,5 @@
 </script>
 
 <FirebaseApp {auth} {firestore}>
-    <Navigation/>
     <slot />
 </FirebaseApp>
