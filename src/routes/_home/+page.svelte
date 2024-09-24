@@ -12,7 +12,7 @@
     StoreBestellungKomplett,
   } from "$lib/stores/stores";
 
-  import ModalKlassiker from "../../components/ModalKlassiker.svelte";
+  import ModalKlassiker from "../../components/_ModalKlassiker.svelte";
   import Resetter from "../../components/Resetter.svelte";
 
   let showModal = false;

@@ -5,12 +5,13 @@
   </script>
   
   <div>
-    <h1>Klassiker</h1>
+    <h1>Pitas</h1>
     <h3>Zutaten für {speise.name}</h3>
     <ul>
       {#each speise.zutaten as zutat}
         <li>{zutat.name}: {zutat.menge}</li>
       {/each}
     </ul>
+    <!-- Weitere pitaspezifische Inhalte -->
   </div>
   

@@ -1,14 +1,21 @@
-import type { Speise } from "$lib/types";
+import type { Speise, Zutat } from "$lib/types";
 
+const GyrostellerSaucen: Zutat[] = [
+    {name: "Mayo", menge: 0, preis: 0.6 },
+    {name: "Ketchup", menge: 0, preis: 0.6 },
+]
 
 export const Nr16: Speise = {
     nr: 16,
     name: "Gyros mit Pommes",
     zutaten: [
         {name: "Gyros", menge: 1},
-        {name: "Pommes", menge: 1}
+        {name: "Pommes", menge: 1},
+        {name: "Kraut", menge: 0},
+        {name: "Tzaziki", menge: 0},
     ],
-    preis: 9.0
+    preis: 9.5,    
+    sauce: GyrostellerSaucen
 };
 
 export const Nr17: Speise = {
@@ -16,9 +23,12 @@ export const Nr17: Speise = {
     name: "Gyros mit Tzaziki",
     zutaten: [
         {name: "Gyros", menge: 1},
-        {name: "Tzaziki", menge: 1}
+        {name: "Pommes", menge: 0},
+        {name: "Kraut", menge: 0},
+        {name: "Tzaziki", menge: 1},
     ],
-    preis: 9.0
+    preis: 9.5,    
+    sauce: GyrostellerSaucen
 };
 
 export const Nr18: Speise = {
@@ -26,9 +36,12 @@ export const Nr18: Speise = {
     name: "Gyros mit Krautsalat",
     zutaten: [
         {name: "Gyros", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Pommes", menge: 0},
+        {name: "Kraut", menge: 1},
+        {name: "Tzaziki", menge: 0},
     ],
-    preis: 9.0
+    preis: 9.5,    
+    sauce: GyrostellerSaucen
 };
 
 export const Nr19: Speise = {
@@ -36,10 +49,12 @@ export const Nr19: Speise = {
     name: "Gyros mit Krautsalat und Pommes",
     zutaten: [
         {name: "Gyros", menge: 1},
+        {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
-        {name: "Pommes", menge: 1}
+        {name: "Tzaziki", menge: 0},
     ],
-    preis: 9.5
+    preis: 10.0,    
+    sauce: GyrostellerSaucen
 };
 
 export const Nr20: Speise = {
@@ -47,10 +62,12 @@ export const Nr20: Speise = {
     name: "Gyros mit Tzaziki und Pommes",
     zutaten: [
         {name: "Gyros", menge: 1},
+        {name: "Pommes", menge: 1},
+        {name: "Kraut", menge: 0},
         {name: "Tzaziki", menge: 1},
-        {name: "Pommes", menge: 1}
     ],
-    preis: 9.5
+    preis: 10.0,    
+    sauce: GyrostellerSaucen
 };
 
 export const Nr21: Speise = {
@@ -58,10 +75,12 @@ export const Nr21: Speise = {
     name: "Gyros mit Krautsalat und Tzaziki",
     zutaten: [
         {name: "Gyros", menge: 1},
+        {name: "Pommes", menge: 0},
         {name: "Kraut", menge: 1},
-        {name: "Tzaziki", menge: 1}
+        {name: "Tzaziki", menge: 1},
     ],
-    preis: 9.0
+    preis: 10.0,    
+    sauce: GyrostellerSaucen
 };
 
 export const Nr22: Speise = {
@@ -73,7 +92,8 @@ export const Nr22: Speise = {
         {name: "Pommes", menge: 1},
         {name: "Tzaziki", menge: 1},
     ],
-    preis: 10.0
+    preis: 11.0,    
+    sauce: GyrostellerSaucen
 };
 
 export const Gyrosteller = [Nr16, Nr17, Nr18, Nr19, Nr20, Nr21, Nr22]

@@ -1,4 +1,4 @@
-import type { SauceT, Speise, ZutatT, Zutat } from "$lib/types";
+import type { Speise, Zutat } from "$lib/types";
 
 const GrillplattenSaucen: Zutat[] = [
     {name: "Tzaziki", menge: 1},
@@ -76,10 +76,12 @@ export const Nr28: Speise = {
     name: "Leichte Grillplatte",
     zutaten: [
         {name: "Gyros", menge: 1},
-        {name: "Suflaki", menge: 1},
-        {name: "Hähnchen", menge: 1},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1}
+    ],
+    option: [
+        {name: "Suflaki", menge: 1},
+        {name: "Hähnchen", menge: 0},
     ],
     preis: 13.0,
     sauce: GrillplattenSaucen

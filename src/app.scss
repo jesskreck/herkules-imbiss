@@ -67,6 +67,22 @@ h6 {
   grid-column: span 3;
 }
 
+
+/*-----Button-----*/
+
+.btn-primary {
+  background-color: $secondary;
+  border-color: $secondary;
+  border-radius: $border-radius-button;
+  color: white;
+  padding: 0 $sm-space;
+}
+
+.flex {
+  display: flex;
+  gap: $reg-space;
+}
+
 /*-----Navigation-----*/
 
 .nav {
@@ -99,13 +115,12 @@ h6 {
         top: +$xs-space;
         bottom: -$xs-space;
         width: 10px;
-        height: calc(100% - 2*($xs-space));
+        height: calc(100% - 2 * ($xs-space));
         background: $gradient;
       }
     }
   }
 }
-
 
 .container-nav-buttons {
   padding-top: $lg-space;
@@ -164,10 +179,13 @@ h6 {
 }
 
 .card-speise {
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
-  border-radius: 9px;
-  padding: $sm-space;
   background-color: white;
+  border: none;
+  border-radius: 9px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
+  padding: $sm-space;
+  text-align: start;
+  cursor: pointer;
 
   &-top {
     display: flex;
@@ -184,5 +202,85 @@ h6 {
   h3 {
     font-weight: 600;
     padding-top: 0.5rem;
+  }
+}
+
+/*-----Modal-----*/
+
+dialog {
+  max-width: 32em;
+  border-radius: 0.2em;
+  border: none;
+  padding: 0;
+
+  &::backdrop{
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  > div {
+    padding: 1em;
+  }
+
+  &[open] {
+    animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin: auto;
+
+    &::backdrop {
+      animation: fade 0.2s ease-out;
+    }
+  }
+  
+}
+
+
+/*-----Counter-----*/
+
+.counter {
+  display: flex;
+  border-radius: $border-radius-button;
+  border: $color-border 1px solid;
+  font-weight: 600;
+  align-items: baseline;
+
+
+  button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: larger;
+
+    &:nth-of-type(1) {
+      padding: $xs-space $reg-space $xs-space $sm-space;
+    }
+    
+    &:nth-of-type(2) {
+      padding: $xs-space $sm-space $xs-space $reg-space;
+    }
+  }
+
+  div {
+    text-align: center;
+    width: $reg-space;
+  }
+}
+
+
+
+/*-----Keyframes-----*/
+
+@keyframes zoom {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -25,7 +25,10 @@ export type ZutatT =
   | "Peperoni"
   | "Feta"
   | "Oliven"
-export type SauceT = "Cocktail" | "Tzaziki" | "Hollandaise" | "Metaxa" | "Senf";
+  | "Salat"
+  | "Essig Öl"
+  | "French Dressing"
+
 
 export interface Zutat {
   name: ZutatT;
@@ -39,9 +42,16 @@ export interface Speise {
   name: string;
   zutaten: Zutat[];
   preis: number;
-
-  // entweder übergreifend Saucen für Kategorie definieren | oder individuelles Array mit Saucen
   sauce?: Zutat[];
+  option?: Zutat[];
+}
+
+export interface currentSpeise {
+  id: number; //wird bei Klick auf hinzufügen random generiert
+  speise: Speise;
+  menge: number;
+  gesamtpreis: number;
+  notiz?: string;
 }
 
 export interface SpeiseBestellt {

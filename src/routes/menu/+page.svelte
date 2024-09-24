@@ -1,16 +1,33 @@
 <script lang="ts">
+  import type { Speise } from "$lib/types";
+
   import { onMount } from "svelte";
   import { Klassiker } from "$lib/data/klassiker";
   import { Pitas } from "$lib/data/pitas";
   import { Grillplatten } from "$lib/data/grillplatten";
+  import { Gyrosteller } from "$lib/data/gyrosteller";
+  import { Ueberbacken } from "$lib/data/ueberbacken";
+  import { Salate } from "$lib/data/salate";
 
-  import logo from "$lib/assets/webp/herkules_icon_bunt.webp";
-  import Kitchen from "$lib/assets/svg/nav/kitchen.svelte";
-  import KitchenActive from "$lib/assets/svg/nav/kitchen_active.svelte";
-  import Menu from "$lib/assets/svg/nav/menu.svelte";
-  import MenuActive from "$lib/assets/svg/nav/menu_active.svelte";
-  import Orders from "$lib/assets/svg/nav/orders.svelte";
-  import OrdersActive from "$lib/assets/svg/nav/orders_active.svelte";
+  import SpeiseCard from "../../components/speiseCard.svelte";
+  import Modal from "../../components/Modal.svelte";
+
+
+  // States
+  let kategorien = [
+    { name: "Klassiker", speisen: Klassiker },
+    { name: "Pitas", speisen: Pitas },
+    { name: "Gyrosteller", speisen: Gyrosteller },
+    { name: "Grillplatten", speisen: Grillplatten },
+    { name: "Überbacken", speisen: Ueberbacken },
+    { name: "Salate", speisen: Salate },
+    // { name: "Getränke", speisen: },
+  ];
+
+  let kategorieSelected = "";
+  let showModal = false;
+  let selectedSpeise: Speise | null = null;
+
 
   // Datumanzeige
   let time = new Date();
@@ -36,31 +53,8 @@
     };
   });
 
-  // Navbar
-  enum navElement {
-    Menu,
-    Orders,
-    Kitchen,
-  }
-  let navActive: navElement = navElement.Menu;
 
-  function handleNav(navClicked: navElement) {
-    navActive = navClicked;
-  }
-
-  // State
-  let kategorien = [
-    "Klassiker",
-    "Pitas",
-    "Gyrosteller",
-    "Grillplatten",
-    "Überbacken",
-    "Salate",
-    "Getränke",
-  ];
-
-  let kategorieSelected = "";
-
+  // Functions
   function jumpToKategorie(kategorie: string) {
     kategorieSelected = kategorie;
 
@@ -69,53 +63,18 @@
       element.scrollIntoView();
     }
   }
+
+  function openModal(speise: Speise) {
+    selectedSpeise = speise;
+    showModal = true;
+  }
+
 </script>
 
-<div class="main">
-  <div class="nav">
-    <img alt="Herkules Grill Logo" src={logo} />
-    <div class="container-nav-buttons">
-      <a
-        href="menu"
-        class="nav-button"
-        on:click={() => handleNav(navElement.Menu)}
-      >
-        {#if navActive === navElement.Menu}
-          <div class="selected">
-            <MenuActive />
-          </div>
-        {:else}
-          <Menu />
-        {/if}
-      </a>
-      <a
-        href="menu"
-        class="nav-button"
-        on:click={() => handleNav(navElement.Orders)}
-      >
-        {#if navActive === navElement.Orders}
-          <div class="selected">
-            <OrdersActive />
-          </div>
-        {:else}
-          <Orders />
-        {/if}
-      </a>
-      <a
-        href="menu"
-        class="nav-button"
-        on:click={() => handleNav(navElement.Kitchen)}
-      >
-        {#if navActive === navElement.Kitchen}
-          <div class="selected">
-            <KitchenActive />
-          </div>
-        {:else}
-          <Kitchen />
-        {/if}
-      </a>
-    </div>
-  </div>
+{#if showModal && selectedSpeise}
+    <Modal speise={selectedSpeise} bind:showModal>
+    </Modal>
+{/if}
 
   <div class="menu">
     <div class="menu-header">
@@ -124,73 +83,32 @@
       <div class="container-kategorien">
         {#each kategorien as kategorie}
           <button
-            class:selected={kategorieSelected === kategorie}
+            class:selected={kategorieSelected === kategorie.name}
             class="btn-kategorie"
-            on:click={() => jumpToKategorie(kategorie)}
+            on:click={() => jumpToKategorie(kategorie.name)}
           >
-            {kategorie}
+            {kategorie.name}
           </button>
         {/each}
       </div>
     </div>
 
     <div class="menu-sections">
-      <section id={kategorien[0]}>
-        <div class="header-kategorie">Klassiker</div>
-        <div class="container-speisen">
-          {#each Klassiker as speise}
-            <div class="card-speise">
-              <div class="card-speise-top">
-                <p class="card-speise-number">#{speise.nr}</p>
-                <p>{speise.preis.toFixed(2)}€</p>
-              </div>
-              <h3>{speise.name}</h3>
-            </div>
-          {/each}
-        </div>
-      </section>
-      <section id={kategorien[1]}>
-        <div class="header-kategorie">Pitas</div>
-        <div class="container-speisen">
-          {#each Pitas as speise}
-            <div class="card-speise">
-              <div class="card-speise-top">
-                <p class="card-speise-number">#{speise.nr}</p>
-                <p>{speise.preis.toFixed(2)}€</p>
-              </div>
-              <h3>{speise.name}</h3>
-            </div>
-          {/each}
-        </div>
-      </section>
-      <section id={kategorien[2]}>
-        <div class="header-kategorie">Gyrosteller</div>
-        <div class="container-speisen">
-          <div class="card-speise">Gyrosteller</div>
-        </div>
-      </section>
-      <section id={kategorien[3]}>
-        <div class="header-kategorie">Grillplatten</div>
-        <div class="container-speisen">
-          {#each Grillplatten as speise}
-            <div class="card-speise">
-              <div class="card-speise-top">
-                <p class="card-speise-number">#{speise.nr}</p>
-                <p>{speise.preis.toFixed(2)}€</p>
-              </div>
-              <h3>{speise.name}</h3>
-            </div>
-          {/each}
-        </div>
-      </section>
-      <section id={kategorien[4]}>
-        <div class="header-kategorie">Überbacken</div>
-      </section>
-        </div>
+      {#each kategorien as kategorie, i}
+        <section id={kategorien[i].name}>
+          <div class="header-kategorie">{kategorie.name}</div>
+          <div class="container-speisen">
+            {#each kategorie.speisen as speise}
+              <SpeiseCard {speise} on:open-modal={(event) => openModal(event.detail.speise)} />
+            {/each}
+          </div>
+        </section>
+      {/each}
+
+   
     </div>
+  </div>
 
   <div class="sum">Bye</div>
-</div>
 
-<style>
-</style>
+
