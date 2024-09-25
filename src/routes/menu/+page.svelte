@@ -10,7 +10,8 @@
   import { Salate } from "$lib/data/salate";
 
   import SpeiseCard from "../../components/speiseCard.svelte";
-  import Modal from "../../components/Modal.svelte";
+  import Dialog from "../../components/Dialog.svelte";
+  import Bestelluebersicht from "../../components/Bestelluebersicht.svelte";
 
 
   // States
@@ -72,8 +73,8 @@
 </script>
 
 {#if showModal && selectedSpeise}
-    <Modal speise={selectedSpeise} bind:showModal>
-    </Modal>
+    <Dialog speise={selectedSpeise} bind:showModal>
+    </Dialog>
 {/if}
 
   <div class="menu">
@@ -109,6 +110,8 @@
     </div>
   </div>
 
-  <div class="sum">Bye</div>
+  <div class="sum">
+    <Bestelluebersicht />
+  </div>
 
 

@@ -46,7 +46,7 @@ export interface Speise {
   option?: Zutat[];
 }
 
-export interface currentSpeise {
+export interface SpeiseBestellt {
   id: number; //wird bei Klick auf hinzufügen random generiert
   speise: Speise;
   menge: number;
@@ -54,19 +54,11 @@ export interface currentSpeise {
   notiz?: string;
 }
 
-export interface SpeiseBestellt {
-  speise: Speise;
-  menge: number;
-  // extras?: Extra[];
-  preis: number;
-  kommentar?: string;
-}
-
-export interface BestellungKomplett {
+export interface Bestellung {
   speisen: SpeiseBestellt[];
   gesamtpreis: number;
-  bestellt: Date;
-  bekommen: Date;
+  angenommen: Date;
+  ausgegeben: Date;
   kunde?: {
     telefon?: string;
     adresse?: string;

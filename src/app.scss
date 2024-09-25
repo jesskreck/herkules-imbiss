@@ -15,6 +15,7 @@ body {
   margin: 0;
 }
 
+
 // remove built-in form typography margin: remove default margin on text tags
 input,
 button,
@@ -67,8 +68,15 @@ h6 {
   grid-column: span 3;
 }
 
-
 /*-----Button-----*/
+
+button {
+  &:disabled {
+    background-color: $color-border;
+    color: $grey;
+    cursor: not-allowed;
+  }
+}
 
 .btn-primary {
   background-color: $secondary;
@@ -76,6 +84,7 @@ h6 {
   border-radius: $border-radius-button;
   color: white;
   padding: 0 $sm-space;
+  border: none;
 }
 
 .flex {
@@ -179,10 +188,13 @@ h6 {
 }
 
 .card-speise {
+  //noch überlegen ob zusätzliches Grid einbauen damit Nummer und Text oben ohne Größe der Karte zu verringern
+  align-self: start;
+
   background-color: white;
   border: none;
   border-radius: 9px;
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: $box-shadow-lg;
   padding: $sm-space;
   text-align: start;
   cursor: pointer;
@@ -205,16 +217,65 @@ h6 {
   }
 }
 
+/*-----Zutaten-----*/
+.btn-zutat {
+  border-radius: $border-radius;
+  border: 3px solid;
+
+  &.deactived {
+    background-color: transparentize($color-border, 0.8) !important;
+    color: $color-border !important;
+    box-shadow: none !important;
+    border-color: $color-border !important;
+
+    img {
+      opacity: 0.25;
+    }
+  }
+
+  &.Gyros {
+    background-color: $blue;
+    border-color: $blue;
+  }
+
+  &.Pommes {
+    background-color: $orange;
+    border-color: $orange;
+  }
+
+  @each $zutat in $sonstiges {
+    &.#{$zutat} {
+      background-color: $grey;
+      border-color: $grey;
+    }
+  }
+
+  @each $zutat in $gegrillt {
+    &.#{$zutat} {
+      background-color: $lila;
+      border-color: $lila;
+    }
+  }
+}
+
 /*-----Modal-----*/
 
 dialog {
-  max-width: 32em;
   border-radius: 0.2em;
   border: none;
-  padding: 0;
+  padding: $xs-space $sm-space;
+  min-width: 40rem;
 
-  &::backdrop{
-    background: rgba(0, 0, 0, 0.3);
+  h1 {
+    padding-bottom: $sm-space;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.6);
   }
 
   > div {
@@ -229,19 +290,74 @@ dialog {
       animation: fade 0.2s ease-out;
     }
   }
-  
 }
 
+.modal-container {
+  margin-bottom: $reg-space;
+  width: 100%;
+  overflow: visible;
+
+  &--zutaten {
+    display: flex;
+    flex-direction: row;
+
+    .btn-zutat {
+      min-width: 8rem;
+      display: flex;
+      box-shadow: $box-shadow-sm;
+      flex-direction: column;
+      color: white;
+      margin-right: $sm-space;
+      align-items: center;
+
+      img {
+        width: 6rem;
+        margin: 0 auto;
+        padding: $xs-space;
+      }
+    }
+  }
+
+  &--saucen {
+    display: flex;
+    flex-direction: row;
+
+    .btn-zutat {
+      display: flex;
+      box-shadow: $box-shadow-sm;
+      flex-direction: row;
+      color: white;
+      margin-right: $sm-space;
+      align-items: center;
+
+      img {
+        width: 4rem;
+        margin: 0 auto;
+        padding: $xs-space;
+      }
+    }
+  }
+
+  &--notiz {
+    input {
+      @extend %border-light;
+      width: 100%;
+
+      &:focus-visible {
+        outline-color: transparentize($secondary, 0.5);
+      }
+    }
+  }
+}
 
 /*-----Counter-----*/
 
 .counter {
+  @extend %border-light;
   display: flex;
-  border-radius: $border-radius-button;
-  border: $color-border 1px solid;
   font-weight: 600;
   align-items: baseline;
-
+  flex-grow: 0;
 
   button {
     background-color: white;
@@ -252,7 +368,7 @@ dialog {
     &:nth-of-type(1) {
       padding: $xs-space $reg-space $xs-space $sm-space;
     }
-    
+
     &:nth-of-type(2) {
       padding: $xs-space $sm-space $xs-space $reg-space;
     }
@@ -262,9 +378,11 @@ dialog {
     text-align: center;
     width: $reg-space;
   }
+
+  ~ button {
+    flex-grow: 1;
+  }
 }
-
-
 
 /*-----Keyframes-----*/
 

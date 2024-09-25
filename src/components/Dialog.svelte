@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Speise } from "$lib/types";
-  import Counter from "./Counter.svelte";
   import ModalGyrosteller from "./ModalGyrosteller.svelte";
   import ModalKlassiker from "./ModalKlassiker.svelte";
   import ModalPitas from "./ModalPitas.svelte";
@@ -11,22 +10,28 @@
   let dialog: HTMLDialogElement;
   $: if (dialog && showModal) dialog.showModal();
 
-  let component;
+  let modal;
   $: {
     switch (true) {
       case speise.nr >= 1 && speise.nr <= 6:
-        component = ModalKlassiker;
+        modal = ModalGyrosteller;
         break;
       case speise.nr >= 8 && speise.nr <= 15:
-        component = ModalPitas;
+        modal = ModalPitas;
         break;
       case speise.nr >= 16 && speise.nr <= 22:
-        component = ModalGyrosteller;
+        modal = ModalGyrosteller;
         break;
       default:
-        component = null; // Optionaler Fallback
+        modal = null; // Optionaler Fallback
     }
   }
+
+  function closeModal() {
+    showModal = false;
+    dialog.close
+  }
+  
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
@@ -37,17 +42,12 @@
 >
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div on:click|stopPropagation>
-    <h1>#{speise.nr} {speise.name}</h1>
-
-    {#if component}
-    <svelte:component this={component} {speise} />
+    {#if modal}
+    <svelte:component this={modal} {speise} on:closeModal={closeModal}/>
   {:else}
     <p>Diese Speise hat keine spezifischen Inhalte.</p> <!-- Optionaler Fallback -->
   {/if}
 
-    <div class="flex">
-        <Counter />
-        <button class="btn-primary"><strong>hinzufügen</strong> {speise.preis.toFixed(2)}€</button>
-    </div>
+    
   </div>
 </dialog>

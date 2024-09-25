@@ -1,15 +1,15 @@
 <script lang="ts">
 
-    let count = 1;
+    export let count: number = 1;
+    
+    function increment() {
+        count += 1;
+    }
 
     function decrement() {
 		if (count > 0) {
             count -= 1;
         }
-	}
-
-    function increment() {
-        count += 1;
 	}
 
 </script>

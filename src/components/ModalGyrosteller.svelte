@@ -1,40 +1,80 @@
 <script lang="ts">
-  import type { Speise } from "$lib/types";
-  import { currentSpeiseStore } from "../stores/currentSpeiseStores";
-  import { get } from "svelte/store";
-
-  import Zutat from "./Zutat.svelte";
+  import { createEventDispatcher } from "svelte";
+  import type { Speise, Zutat } from "$lib/types";
+  import Counter from "./Counter.svelte";
+  import ZutatButton from "./ZutatButton.svelte";
+  import { bestellungStore } from "../stores/Bestellung";
 
   export let speise: Speise;
 
-  function mapZutatenToBoolean(
-    speise: Speise
-  ): Array<{ name: string; vorhanden: boolean }> {
-    return speise.zutaten.map((zutat) => ({
-      name: zutat.name,
-      vorhanden: zutat.menge === 1,
-    }));
+  let menge: number = 1;
+  let notiz: string = "";
+  let einzelpreis: number = speise.preis;
+  let aufpreis: number = 0;
+  $: gesamtpreis = (einzelpreis + aufpreis) * menge;
+
+  const dispatch = createEventDispatcher();
+
+  function updateZutat(event: CustomEvent<{ zutat: Zutat; aufpreis: number }>) {
+    const updatedZutat = event.detail.zutat;
+    // aktualisier die Menge der betroffenen Zutat
+    speise.zutaten = speise.zutaten.map((z) =>
+      z.name === updatedZutat.name ? updatedZutat : z
+    );
+    // update den Einzelpreis falls ein Aufpreis mitgeschickt wurde
+    einzelpreis = einzelpreis + event.detail.aufpreis;
   }
 
+  function addSpeiseToBestellung() {
+    const toAdd = {
+      id: Math.floor(Math.random() * 1000000),
+      speise: speise,
+      menge: menge,
+      gesamtpreis: gesamtpreis,
+      notiz: notiz,
+    };
 
-  let zutatenBooleans = mapZutatenToBoolean(speise);
+    bestellungStore.update((bestellung) => {
+      return {
+        ...bestellung,
+        speisen: [...bestellung.speisen, toAdd],
+        gesamtpreis: bestellung.gesamtpreis + gesamtpreis,
+      };
+    });
 
-  console.log(zutatenBooleans);
+    dispatch('closeModal')
+  }
 </script>
 
-<h1>baby modal offen</h1>
+<h1>#{speise.nr} {speise.name}</h1>
 
-{#each zutatenBooleans as zutat }
-    <div
-    class:selected={zutat.vorhanden}
-    >
-        {zutat.name}
-    </div>
-{/each}
+<h3>Zutaten</h3>
+<div class="modal-container modal-container--zutaten">
+  {#each speise.zutaten as zutat}
+    <ZutatButton on:mengeChanged={updateZutat} {zutat} />
+  {/each}
+</div>
 
+{#if speise.sauce}
+  <h3>Saucen</h3>
+  <div class="modal-container modal-container--saucen">
+    {#each speise.sauce as zutat}
+      <ZutatButton on:mengeChanged={updateZutat} {zutat} />
+    {/each}
+  </div>
+{/if}
 
-<style>
-    .selected {
-        background-color: green;
-    }
-</style>
+<h3>Notiz</h3>
+<div class="modal-container modal-container--notiz">
+  <input bind:value={notiz} placeholder="Bestellhinweis...|" />
+</div>
+
+<div class="flex">
+  <Counter bind:count={menge} />
+  <button
+    class="btn-primary"
+    on:click={addSpeiseToBestellung}
+    disabled={menge === 0}
+    ><strong>hinzufügen</strong> {gesamtpreis.toFixed(2)}€</button
+  >
+</div>

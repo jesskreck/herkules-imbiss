@@ -1,3 +1,7 @@
+/*-----Listen-----*/
+$gegrillt: Bifteki, Bratwurst, Currywurst, Grillkäse, Hähnchen, Steak, Suflaki;
+$sonstiges: Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf;
+
 /*-----Colors-----*/
 
 $bg-color: linear-gradient(105.94deg, rgba(226, 228, 232, 0.36) 8.92%, rgba(226, 228, 232, 0.48) 40.14%, rgba(226, 228, 232, 0.6) 91.08%);
@@ -6,9 +10,15 @@ $primary: #4DC2F0;
 $secondary: #F61067;
 
 $grey: #999999;
+$blue: #0082BF;
+$lila: #5E239D;
+$green: #0A8754;
+$orange: #F16E00;
+
 $color-border: #E2E4E8;
 
 $gradient: linear-gradient(180deg, #4DC2F0 0%, #F61067 100%);
+
 
 // $tierary: #c8ffa5;
 // $quarterary: #ffc3ee;
@@ -50,6 +60,13 @@ $padding-btn: $sm-space $xs-space;
 $border-solid: 1px solid;
 $border-radius: 9px;
 $border-radius-button: 3px;
+
+
+/*-----Box Shadows-----*/
+
+
+$box-shadow-sm: 2px 2px 6px rgba(0, 0, 0, 0.25);
+$box-shadow-lg: 4px 4px 15px rgba(0, 0, 0, 0.25);
 
 
 /*-----Grid Columns-----*/
@@ -99,3 +116,9 @@ $breakpoints: (
       flex-direction: column;
     }
   }
+
+
+%border-light {
+  border-radius: $border-radius-button;
+  border: $color-border 1px solid;
+}
