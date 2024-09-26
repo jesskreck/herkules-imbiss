@@ -15,7 +15,6 @@ body {
   margin: 0;
 }
 
-
 // remove built-in form typography margin: remove default margin on text tags
 input,
 button,
@@ -58,19 +57,68 @@ h6 {
   &-sections {
     // top: 7rem;
     // position: sticky;
-    height: 80vh;
+    height: 75vh;
     overflow-y: scroll;
     scroll-behavior: smooth;
   }
 }
 
-.sum {
+.bestellung {
   grid-column: span 3;
+  padding: $reg-space;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h3 {
+    font-weight: 600;
+  }
+
+  &-speisen {
+    flex-grow: 1;
+    margin: $sm-space 0;
+
+    &-text {
+      font-size: smaller;
+      padding-bottom: $xs-space;
+    }
+
+    &-zutaten {      
+      &:not(:last-child)::after {
+        content: ", ";
+      }
+    }
+    
+
+    &-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+
+      .btn-delete {
+        align-self: stretch;
+      }
+
+    }
+  }
+
+
+  &-preis {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: $sm-space;
+  }
 }
 
 /*-----Button-----*/
 
 button {
+  cursor: pointer;
+  background-color: white;
+  border: none;
+
   &:disabled {
     background-color: $color-border;
     color: $grey;
@@ -78,18 +126,55 @@ button {
   }
 }
 
-.btn-primary {
-  background-color: $secondary;
-  border-color: $secondary;
-  border-radius: $border-radius-button;
-  color: white;
-  padding: 0 $sm-space;
-  border: none;
+.btn {
+  &-primary {
+    @extend %btn-primary;
+    padding: $sm-space;
+  }
+
+  &-toggler {
+    color: $grey;
+    border: none;
+    background-color: $color-border;
+    flex: 1;
+    padding: $xs-space;
+
+    &.active {
+      @extend %btn-primary;
+      border-radius: $border-radius;
+    }
+  }
+
+  &-delete {
+    @extend %border-light;
+    padding: 0 $sm-space; 
+
+    img {
+      height: $sm-space;
+      margin: 0 auto;
+    }
+  }
 }
 
 .flex {
   display: flex;
   gap: $reg-space;
+}
+
+.stretch {
+  flex: 1;
+}
+
+/*-----Toggler-----*/
+
+.container-toggler {
+  display: flex;
+  flex-direction: row;
+  background-color: $color-border;
+  padding: $xs-space;
+  gap: $xs-space;
+  align-content: stretch;
+  justify-content: space-between;
 }
 
 /*-----Navigation-----*/
@@ -360,9 +445,6 @@ dialog {
   flex-grow: 0;
 
   button {
-    background-color: white;
-    border: none;
-    cursor: pointer;
     font-size: larger;
 
     &:nth-of-type(1) {
@@ -377,10 +459,7 @@ dialog {
   div {
     text-align: center;
     width: $reg-space;
-  }
 
-  ~ button {
-    flex-grow: 1;
   }
 }
 

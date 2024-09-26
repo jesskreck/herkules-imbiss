@@ -17,7 +17,6 @@
       aufpreis = -zutat.preis
     }
 
-    console.log(zutat);
     dispatch('mengeChanged', {zutat, aufpreis})
   }
 

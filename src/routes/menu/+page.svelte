@@ -44,6 +44,7 @@
   $: minutes = time.getMinutes().toString().padStart(2, "0");
   $: seconds = time.getSeconds().toString().padStart(2, "0");
 
+
   onMount(() => {
     const interval = setInterval(() => {
       time = new Date();
@@ -110,8 +111,7 @@
     </div>
   </div>
 
-  <div class="sum">
-    <Bestelluebersicht />
-  </div>
+  <Bestelluebersicht />
+
 
 

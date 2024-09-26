@@ -4,38 +4,41 @@ $sonstiges: Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf;
 
 /*-----Colors-----*/
 
-$bg-color: linear-gradient(105.94deg, rgba(226, 228, 232, 0.36) 8.92%, rgba(226, 228, 232, 0.48) 40.14%, rgba(226, 228, 232, 0.6) 91.08%);
+$bg-color: linear-gradient(
+  105.94deg,
+  rgba(226, 228, 232, 0.36) 8.92%,
+  rgba(226, 228, 232, 0.48) 40.14%,
+  rgba(226, 228, 232, 0.6) 91.08%
+);
 
-$primary: #4DC2F0;
-$secondary: #F61067;
+$primary: #4dc2f0;
+$secondary: #f61067;
 
 $grey: #999999;
-$blue: #0082BF;
-$lila: #5E239D;
-$green: #0A8754;
-$orange: #F16E00;
+$blue: #0082bf;
+$lila: #5e239d;
+$green: #0a8754;
+$orange: #f16e00;
 
-$color-border: #E2E4E8;
+$color-border: #e2e4e8;
 
-$gradient: linear-gradient(180deg, #4DC2F0 0%, #F61067 100%);
-
+$gradient: linear-gradient(180deg, #4dc2f0 0%, #f61067 100%);
 
 // $tierary: #c8ffa5;
 // $quarterary: #ffc3ee;
 
-
 /*-----Fonts-----*/
 
 @font-face {
-    font-family: "GeneralSans-Variable";
-    src: url("/fonts/GeneralSans-Variable.woff2") format("woff2"),
-        url("/fonts/GeneralSans-Variable.woff") format("woff"),
-        url("/fonts/GeneralSans-Variable.ttf") format("truetype");
-    font-weight: 200 700;
-    font-display: swap;
-    font-style: normal;
+  font-family: "GeneralSans-Variable";
+  src:
+    url("/fonts/GeneralSans-Variable.woff2") format("woff2"),
+    url("/fonts/GeneralSans-Variable.woff") format("woff"),
+    url("/fonts/GeneralSans-Variable.ttf") format("truetype");
+  font-weight: 200 700;
+  font-display: swap;
+  font-style: normal;
 }
-
 
 /*-----Typography-----*/
 
@@ -45,7 +48,6 @@ $chperline: 70ch;
 $smaller-text: 80%;
 $bigger-text: 120%;
 
-
 /*-----Paddings & Gap-----*/
 
 $reg-space: 2rem;
@@ -54,20 +56,16 @@ $xs-space: calc($sm-space / 2);
 $lg-space: calc($reg-space * 2);
 $padding-btn: $sm-space $xs-space;
 
-
 /*-----Borders-----*/
 
 $border-solid: 1px solid;
 $border-radius: 9px;
 $border-radius-button: 3px;
 
-
 /*-----Box Shadows-----*/
-
 
 $box-shadow-sm: 2px 2px 6px rgba(0, 0, 0, 0.25);
 $box-shadow-lg: 4px 4px 15px rgba(0, 0, 0, 0.25);
-
 
 /*-----Grid Columns-----*/
 
@@ -79,21 +77,20 @@ $grid-first-half: "1/7";
 $grid-second-half: "7/13";
 $grid-fullwidth: "1/13";
 
-
 /*-----Transitions-----*/
 
 $animation-transition: 0.2s ease-in;
 
-
-
 /*-----Elevations-----*/
 
-$elevation-8: 0 8px 10px rgba(0, 0, 0, 0.12), 0 3px 14px rgba(0, 0, 0, 0.08),
+$elevation-8:
+  0 8px 10px rgba(0, 0, 0, 0.12),
+  0 3px 14px rgba(0, 0, 0, 0.08),
   0 5px 5px rgba(0, 0, 0, 0.14);
-$elevation-4: 0 4px 5px rgba(0, 0, 0, 0.06), 0 1.5px 7px rgba(0, 0, 0, 0.04),
+$elevation-4:
+  0 4px 5px rgba(0, 0, 0, 0.06),
+  0 1.5px 7px rgba(0, 0, 0, 0.04),
   0 2.5px 2.5px rgba(0, 0, 0, 0.07);
-
-
 
 /*-----Media Queries-----*/
 
@@ -101,24 +98,30 @@ $breakpoints: (
   "sm": 576px,
   "md": 768px,
   "lg": 992px,
-  "xl": 1200px,
+  "xl": 1200px
 );
-
 
 /*-----Mixins-----*/
 
 @mixin grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-  
-    @media screen and (max-width: map-get($breakpoints, "md")) {
-      display: flex;
-      flex-direction: column;
-    }
-  }
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 
+  // @media screen and (max-width: map-get($breakpoints, "md")) {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+}
 
 %border-light {
   border-radius: $border-radius-button;
   border: $color-border 1px solid;
+}
+
+%btn-primary {
+  background-color: $secondary;
+  border-color: $secondary;
+  border-radius: $border-radius-button;
+  color: white;
+  border: none;
 }

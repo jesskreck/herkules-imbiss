@@ -1,5 +1,7 @@
 // place files you want to import through the `$lib` alias in this folder.
 
+import type { Writable } from "svelte/store";
+
 export type ZutatT =
   | "Gyros"
   | "Pommes"
@@ -63,4 +65,9 @@ export interface Bestellung {
     telefon?: string;
     adresse?: string;
   };
+}
+
+export interface ButtonGroupContext {
+  selectButton: (value: string) => void;
+  activeButton: Writable<string>;
 }

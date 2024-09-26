@@ -72,7 +72,7 @@
 <div class="flex">
   <Counter bind:count={menge} />
   <button
-    class="btn-primary"
+    class="btn-primary stretch"
     on:click={addSpeiseToBestellung}
     disabled={menge === 0}
     ><strong>hinzufügen</strong> {gesamtpreis.toFixed(2)}€</button
