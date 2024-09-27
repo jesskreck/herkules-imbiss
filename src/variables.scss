@@ -1,6 +1,6 @@
 /*-----Listen-----*/
 $gegrillt: Bifteki, Bratwurst, Currywurst, Grillkäse, Hähnchen, Steak, Suflaki;
-$sonstiges: Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf;
+$sonstiges: Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf, Feta, Peperoni, Oliven, Salat, Veggie;
 
 /*-----Colors-----*/
 
@@ -115,7 +115,7 @@ $breakpoints: (
 
 %border-light {
   border-radius: $border-radius-button;
-  border: $color-border 1px solid;
+  border: $color-border 2px solid;
 }
 
 %btn-primary {
@@ -124,4 +124,49 @@ $breakpoints: (
   border-radius: $border-radius-button;
   color: white;
   border: none;
+}
+
+
+%btn-zutat-lg {
+  min-width: 8rem;
+  display: flex;
+  box-shadow: $box-shadow-sm;
+  flex-direction: column;
+  color: white;
+  margin-right: $sm-space;
+  align-items: center;
+
+  img {
+    width: 6rem;
+    margin: 0 auto;
+    padding: $xs-space;
+  }
+}
+
+
+%btn-zutat-sm {
+  display: flex;
+  box-shadow: $box-shadow-sm;
+  flex-direction: row;
+  color: white;
+  margin-right: $sm-space;
+  align-items: center;
+
+  img {
+    width: 4rem;
+    margin: 0 auto;
+    padding: $xs-space;
+  }
+}
+
+%btn-zutat-xs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: start;
+  box-shadow: $box-shadow-sm;
+  color: white;
+
+  img {
+    width: 3rem;
+  }
 }

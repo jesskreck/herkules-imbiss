@@ -17,7 +17,8 @@ export const Nr37: Speise = {
     sauce: [
         { name: "Essig Öl", menge: 1 },
         { name: "French Dressing", menge: 1 }
-    ]
+    ],
+    singleSauceOnly: true
 };
 
 export const Salate = [Nr37]

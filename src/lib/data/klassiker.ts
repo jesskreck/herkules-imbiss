@@ -23,6 +23,7 @@ export const Nr2: Speise = {
     { name: "Cocktail", menge: 1 },
     { name: "Tzaziki", menge: 0 },
   ],
+  singleSauceOnly: true
 };
 
 export const Nr3: Speise = {
@@ -73,7 +74,7 @@ export const Nr6: Speise = {
 
 export const Nr7: Speise = {
     nr: 7,
-    name: "Extras",
+    name: "Extras (Schälchen)",
     zutaten: [
         {name: "Kraut", menge: 0, preis: 3.5},
         {name: "Tzaziki", menge: 0, preis: 3.5},

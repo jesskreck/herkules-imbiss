@@ -49,66 +49,86 @@ h6 {
   background: $bg-color;
   padding: $reg-space;
 
-  &-header {
+  &_header {
     position: sticky;
     top: $reg-space;
+
+    &-jumper {
+      display: flex;
+      gap: $sm-space;
+      padding-top: $reg-space;
+    }
   }
 
-  &-sections {
+  &_kategorien {
     // top: 7rem;
     // position: sticky;
     height: 75vh;
     overflow-y: scroll;
     scroll-behavior: smooth;
-  }
-}
 
-.bestellung {
-  grid-column: span 3;
-  padding: $reg-space;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  h3 {
-    font-weight: 600;
-  }
-
-  &-speisen {
-    flex-grow: 1;
-    margin: $sm-space 0;
-
-    &-text {
-      font-size: smaller;
-      padding-bottom: $xs-space;
+    &-heading {
+      padding: $reg-space 0 $xs-space;
+      color: $grey;
+      font-weight: 500;
     }
+  }
+  &_bestellung {
+    grid-column: span 3;
+    padding: $reg-space;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-    &-zutaten {      
-      &:not(:last-child)::after {
-        content: ", ";
+    &-list {
+      flex-grow: 1;
+      margin: $sm-space 0;
+
+      &-item {
+        font-size: smaller;
+        padding-bottom: $sm-space;
+        display: flex;
+        justify-content: space-between;
+        
+        &-btn {
+          text-align: left;
+        }
+
+        &-zutaten {
+          span:not(:last-child)::after {
+            content: ", ";
+          }
+        }
+
+        &-notiz {
+          color: $secondary;
+          // font-style: italic;
+        }
+
+        &-preis {
+          text-align: right;
+        }
+
+        // // FÜR ALTE VARIANTE
+        // &-buttons {
+        //   display: flex;
+        //   flex-direction: row;
+        //   justify-content: space-between;
+        //   align-items: baseline;
+
+        //   .btn-delete {
+        //     align-self: stretch;
+        //   }
+        // }
       }
     }
-    
 
-    &-buttons {
+    &-preis {
       display: flex;
-      flex-direction: row;
       justify-content: space-between;
       align-items: baseline;
-
-      .btn-delete {
-        align-self: stretch;
-      }
-
+      margin-bottom: $sm-space;
     }
-  }
-
-
-  &-preis {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: $sm-space;
   }
 }
 
@@ -147,11 +167,12 @@ button {
 
   &-delete {
     @extend %border-light;
-    padding: 0 $sm-space; 
+    padding: 0 $sm-space;
 
-    img {
+    svg {
       height: $sm-space;
       margin: 0 auto;
+      fill: $secondary;
     }
   }
 }
@@ -226,13 +247,6 @@ button {
 
 /*-----Menü Übersicht Speisen-----*/
 
-.container-kategorien {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: $sm-space;
-  padding-top: $reg-space;
-}
-
 .btn-kategorie {
   padding: $sm-space $xs-space $xs-space 0;
   border: none;
@@ -257,14 +271,7 @@ button {
   }
 }
 
-.header-kategorie {
-  padding: $reg-space 0 $xs-space;
-  color: $grey;
-  font-size: larger;
-  font-weight: 500;
-}
-
-.container-speisen {
+.container-card-speise {
   display: grid;
   gap: $reg-space;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
@@ -297,12 +304,12 @@ button {
   }
 
   h3 {
-    font-weight: 600;
     padding-top: 0.5rem;
   }
 }
 
-/*-----Zutaten-----*/
+/*-----Speise Editor-----*/
+
 .btn-zutat {
   border-radius: $border-radius;
   border: 3px solid;
@@ -343,7 +350,54 @@ button {
   }
 }
 
-/*-----Modal-----*/
+.editor {
+  margin: $sm-space $xs-space;
+
+  &-container {
+    margin-bottom: $reg-space;
+  }
+
+  &-zutaten {
+    display: flex;
+    flex-direction: row;
+
+    .btn-zutat {
+      @extend %btn-zutat-lg;
+    }
+  }
+
+  &-saucen {
+    display: flex;
+    flex-direction: row;
+
+    .btn-zutat {
+      @extend %btn-zutat-sm;
+    }
+  }
+
+  &-extras {
+    display: flex;
+    flex-direction: column;
+    gap: $sm-space;
+
+    .btn-zutat {
+      @extend %btn-zutat-xs;
+    }
+  }
+
+  &-notiz {
+    input {
+      @extend %border-light;
+      width: 100%;
+
+      &:focus-visible {
+        outline-color: transparentize($secondary, 0.5);
+      }
+    }
+  }
+}
+
+/*-----Dialog-----*/
 
 dialog {
   border-radius: 0.2em;
@@ -353,10 +407,6 @@ dialog {
 
   h1 {
     padding-bottom: $sm-space;
-  }
-
-  h3 {
-    font-weight: 600;
   }
 
   &::backdrop {
@@ -377,89 +427,39 @@ dialog {
   }
 }
 
-.modal-container {
-  margin-bottom: $reg-space;
-  width: 100%;
-  overflow: visible;
-
-  &--zutaten {
-    display: flex;
-    flex-direction: row;
-
-    .btn-zutat {
-      min-width: 8rem;
-      display: flex;
-      box-shadow: $box-shadow-sm;
-      flex-direction: column;
-      color: white;
-      margin-right: $sm-space;
-      align-items: center;
-
-      img {
-        width: 6rem;
-        margin: 0 auto;
-        padding: $xs-space;
-      }
-    }
-  }
-
-  &--saucen {
-    display: flex;
-    flex-direction: row;
-
-    .btn-zutat {
-      display: flex;
-      box-shadow: $box-shadow-sm;
-      flex-direction: row;
-      color: white;
-      margin-right: $sm-space;
-      align-items: center;
-
-      img {
-        width: 4rem;
-        margin: 0 auto;
-        padding: $xs-space;
-      }
-    }
-  }
-
-  &--notiz {
-    input {
-      @extend %border-light;
-      width: 100%;
-
-      &:focus-visible {
-        outline-color: transparentize($secondary, 0.5);
-      }
-    }
-  }
-}
-
 /*-----Counter-----*/
 
 .counter {
   @extend %border-light;
   display: flex;
   font-weight: 600;
-  align-items: baseline;
+  align-items: center;
   flex-grow: 0;
 
   button {
-    font-size: larger;
+    // font-size: larger;
+    align-self: stretch;
+    padding: 0.1rem $xs-space;
+  }
 
-    &:nth-of-type(1) {
-      padding: $xs-space $reg-space $xs-space $sm-space;
-    }
+  &.bigger {
+    button {
+      font-size: larger;
+      align-self: stretch;
 
-    &:nth-of-type(2) {
-      padding: $xs-space $sm-space $xs-space $reg-space;
+      &:nth-of-type(1) {
+        padding: $xs-space $reg-space $xs-space $sm-space;
+      }
+
+      &:nth-of-type(2) {
+        padding: $xs-space $sm-space $xs-space $reg-space;
+      }
     }
   }
 
-  div {
+  &-number {
     text-align: center;
     width: $reg-space;
-
   }
 }
 
@@ -480,4 +480,23 @@ dialog {
   to {
     opacity: 1;
   }
+}
+
+/*-----Scrollbar-----*/
+
+#style-2::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px $grey;
+  border-radius: $border-radius;
+  background: $gradient;
+}
+
+#style-2::-webkit-scrollbar {
+  width: 10px;
+}
+
+#style-2::-webkit-scrollbar-thumb {
+  border-radius: $border-radius;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  background: rgba(white, 0.8);
+  // background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 }

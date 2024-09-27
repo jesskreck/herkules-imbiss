@@ -45,6 +45,7 @@ export interface Speise {
   zutaten: Zutat[];
   preis: number;
   sauce?: Zutat[];
+  singleSauceOnly?: boolean;
   option?: Zutat[];
 }
 

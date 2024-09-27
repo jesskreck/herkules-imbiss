@@ -21,6 +21,7 @@ export const Nr8: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Nr9: Speise = {
@@ -32,6 +33,7 @@ export const Nr9: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Nr10: Speise = {
@@ -43,6 +45,7 @@ export const Nr10: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Nr11: Speise = {
@@ -54,6 +57,7 @@ export const Nr11: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Nr12: Speise = {
@@ -65,6 +69,7 @@ export const Nr12: Speise = {
 ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Nr13: Speise = {
@@ -77,6 +82,7 @@ export const Nr13: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 
@@ -90,6 +96,7 @@ export const Nr14: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Nr15: Speise = {
@@ -101,6 +108,7 @@ export const Nr15: Speise = {
   ],
   preis: 8.0,
   sauce: PitaSaucen,
+  singleSauceOnly: true
 };
 
 export const Pitas = [Nr8, Nr9, Nr10, Nr11, Nr12, Nr13, Nr14, Nr15];

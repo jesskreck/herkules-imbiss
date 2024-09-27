@@ -16,7 +16,8 @@ export const Nr33: Speise = {
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 9.5,
-    sauce: ÜberbackenSaucen
+    sauce: ÜberbackenSaucen,
+    singleSauceOnly: true
 };
 
 export const Nr34: Speise = {
@@ -28,7 +29,8 @@ export const Nr34: Speise = {
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 9.5,
-    sauce: ÜberbackenSaucen
+    sauce: ÜberbackenSaucen,
+    singleSauceOnly: true
 };
 
 export const Nr35: Speise = {
@@ -39,7 +41,8 @@ export const Nr35: Speise = {
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 10.0,
-    sauce: ÜberbackenSaucen
+    sauce: ÜberbackenSaucen,
+    singleSauceOnly: true
 };
 
 export const Nr36: Speise = {
@@ -50,7 +53,8 @@ export const Nr36: Speise = {
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 10.0,
-    sauce: ÜberbackenSaucen
+    sauce: ÜberbackenSaucen,
+    singleSauceOnly: true
 };
 
 export const Ueberbacken = [Nr33, Nr34, Nr35, Nr36] 
