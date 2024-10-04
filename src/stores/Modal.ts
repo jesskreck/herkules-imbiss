@@ -9,8 +9,8 @@ export const modalStore = writable<{
 
 // Funktion zum Öffnen des Modals mit der ausgewählten Speise
 export function openModal(speise: Speise | SpeiseBestellt) {
-  modalStore.set({ showModal: true, selectedSpeise: speise });
-  console.log("check");
+  const speiseCopy = structuredClone(speise);
+  modalStore.set({ showModal: true, selectedSpeise: speiseCopy });
 }
 
 // Funktion zum Schließen des Modals

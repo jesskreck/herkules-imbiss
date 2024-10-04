@@ -13,7 +13,7 @@
   } from "$lib/stores/stores";
 
   import ModalKlassiker from "../../components/_ModalKlassiker.svelte";
-  import Resetter from "../../components/Resetter.svelte";
+  import Resetter from "../../components/utils/Resetter.svelte";
 
   let showModal = false;
 

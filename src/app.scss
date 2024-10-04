@@ -74,11 +74,9 @@ h6 {
     }
   }
   &_bestellung {
+    @extend %menu-bestellung;
     grid-column: span 3;
     padding: $reg-space;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     &-list {
       flex-grow: 1;
@@ -86,27 +84,44 @@ h6 {
 
       &-item {
         font-size: smaller;
+        text-align: right;
+        // resetting grid default for padding-inline:
+        padding: 0;
         padding-bottom: $sm-space;
-        display: flex;
-        justify-content: space-between;
-        
-        &-btn {
+        display: grid;
+        grid-template-columns: 75% auto auto;
+        width: 100%;
+        align-items: baseline;
+        grid-template-areas:
+          "name menge preis"
+          "zutaten zutaten zutaten"
+          "notiz notiz notiz";
+
+        &-menge {
+          grid-area: menge;
+        }
+
+        &-name {
+          grid-area: name;
           text-align: left;
+        }
+        &-preis {
+          grid-area: preis;
         }
 
         &-zutaten {
+          grid-area: zutaten;
+          text-align: left;
+
           span:not(:last-child)::after {
             content: ", ";
           }
         }
 
         &-notiz {
+          grid-area: notiz;
+          text-align: left;
           color: $secondary;
-          // font-style: italic;
-        }
-
-        &-preis {
-          text-align: right;
         }
 
         // // FÜR ALTE VARIANTE
@@ -158,6 +173,7 @@ button {
     background-color: $color-border;
     flex: 1;
     padding: $xs-space;
+    text-align: center;
 
     &.active {
       @extend %btn-primary;
@@ -335,6 +351,11 @@ button {
     border-color: $orange;
   }
 
+  &.ueberbacken {
+    background-color: $green;
+    border-color: $green;
+  }
+
   @each $zutat in $sonstiges {
     &.#{$zutat} {
       background-color: $grey;
@@ -400,11 +421,8 @@ button {
 /*-----Dialog-----*/
 
 dialog {
-  border-radius: 0.2em;
+  padding: 0;
   border: none;
-  padding: $xs-space $sm-space;
-  min-width: 40rem;
-
   h1 {
     padding-bottom: $sm-space;
   }
@@ -413,16 +431,85 @@ dialog {
     background: rgba(0, 0, 0, 0.6);
   }
 
-  > div {
-    padding: 1em;
+  &.editor {
+    border-radius: 0.2em;
+    padding: $xs-space $sm-space;
+    min-width: 40rem;
+
+    > div {
+      padding: 1em;
+    }
+
+    &[open] {
+      animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      margin: auto;
+
+      &::backdrop {
+        animation: fade 0.2s ease-out;
+      }
+    }
   }
 
-  &[open] {
-    animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    margin: auto;
+  &.checkout {
+    height: 100vh;
+    width: 40%;
+    padding: $reg-space;
 
-    &::backdrop {
-      animation: fade 0.2s ease-out;
+    .menu-bestellung {
+      // ursprüngliche props werden irgendwo vom dialog überschrieben, daher:
+      @extend %menu-bestellung;
+
+      .btn-primary {
+        // button etwas höher setzen damit nicht aus Versehen auf Drucken geklickt wird
+        margin-bottom: $reg-space;
+      }
+
+      h3:first-child {
+        text-align: center;
+      }
+    }
+
+    .checkout {
+      &-abholung {
+        margin-bottom: $reg-space;
+        display: grid;
+        column-gap: $sm-space;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto 1fr;
+
+        &-nummer {
+          grid-row-start: 2;
+
+          input {
+            @extend %border-light;
+            width: 100%;
+            height: 100%;
+
+            &:focus-visible {
+              outline-color: transparentize($secondary, 0.5);
+            }
+          }
+        }
+
+        &-zeit {
+          grid-column-start: 2;
+        }
+        .counter {
+          grid-column-start: 2;
+          grid-row-start: 2;
+        }
+        input {
+          padding: $xs-space;
+        }
+      }
+    }
+
+    &[open] {
+      margin-left: auto;
+    }
+
+    &:-internal-dialog-in-top-layer {
+      max-height: 100%;
     }
   }
 }
@@ -460,6 +547,11 @@ dialog {
   &-number {
     text-align: center;
     width: $reg-space;
+  }
+
+  &-time {
+    text-align: center;
+    width: $lg-space
   }
 }
 

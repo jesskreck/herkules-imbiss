@@ -2,6 +2,14 @@
 
 import type { Writable } from "svelte/store";
 
+export enum BestellTyp {
+  a = "Hier Essen",
+  b = "Abholung",
+  c = "Lieferung",
+}
+
+export const BestellTypen = Object.values(BestellTyp)
+
 export type ZutatT =
   | "Gyros"
   | "Pommes"
@@ -50,7 +58,7 @@ export interface Speise {
 }
 
 export interface SpeiseBestellt {
-  id: number; //wird bei Klick auf hinzufügen random generiert
+  id: number; 
   speise: Speise;
   menge: number;
   gesamtpreis: number;
@@ -58,14 +66,13 @@ export interface SpeiseBestellt {
 }
 
 export interface Bestellung {
+  nr: Number,
   speisen: SpeiseBestellt[];
   gesamtpreis: number;
-  angenommen: Date;
-  ausgegeben: Date;
-  kunde?: {
-    telefon?: string;
-    adresse?: string;
-  };
+  eingangszeit: Date;
+  abholzeit: Date;
+  telefon?: string;
+  adresse?: string;
 }
 
 export interface ButtonGroupContext {

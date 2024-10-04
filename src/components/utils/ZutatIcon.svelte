@@ -44,6 +44,9 @@
     case "Salat":
       imagePath = "/src/lib/assets/webp/zutaten/salat.webp";
       break;
+      case "Feta mit Salat":
+      imagePath = "/src/lib/assets/webp/zutaten/salat.webp";
+      break;
     case "Senf":
       imagePath = "/src/lib/assets/webp/zutaten/senf.webp";
       break;
@@ -56,6 +59,9 @@
     case "Tzaziki":
       imagePath = "/src/lib/assets/webp/zutaten/tzaziki.webp";
       break;
+    case "Veggie":
+    imagePath = "/src/lib/assets/webp/zutaten/veggie.webp";
+    break;
     case "Zwiebeln":
       imagePath = "/src/lib/assets/webp/zutaten/zwiebel.webp";
       break;

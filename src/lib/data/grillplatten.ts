@@ -13,7 +13,9 @@ export const Nr23: Speise = {
         {name: "Gyros", menge: 1},
         {name: "Currywurst", menge: 1},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
+
     ],
     preis: 10.0,
     sauce: [
@@ -29,7 +31,8 @@ export const Nr24: Speise = {
     zutaten: [
         {name: "Suflaki", menge: 2},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 13.0,
     sauce: GrillplattenSaucen
@@ -41,7 +44,8 @@ export const Nr25: Speise = {
     zutaten: [
         {name: "Hähnchen", menge: 2},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 13.0,
     sauce: GrillplattenSaucen
@@ -53,7 +57,8 @@ export const Nr26: Speise = {
     zutaten: [
         {name: "Steak", menge: 2},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 13.0,
     sauce: GrillplattenSaucen
@@ -65,7 +70,8 @@ export const Nr27: Speise = {
     zutaten: [
         {name: "Bifteki", menge: 2},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 14.0,
     sauce: GrillplattenSaucen
@@ -77,7 +83,8 @@ export const Nr28: Speise = {
     zutaten: [
         {name: "Gyros", menge: 1},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     option: [
         {name: "Suflaki", menge: 1},
@@ -106,7 +113,8 @@ export const Nr30: Speise = {
     zutaten: [
         {name: "Bifteki", menge: 2, überbacken: true},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 16.0,
     sauce: GrillplattenSaucen
@@ -120,7 +128,8 @@ export const Nr31: Speise = {
         {name: "Bifteki", menge: 1},
         {name: "Steak", menge: 1},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 16.0,
     sauce: GrillplattenSaucen
@@ -134,7 +143,8 @@ export const Nr32: Speise = {
         {name: "Suflaki", menge: 1},
         {name: "Gyros", menge: 1},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1}
+        {name: "Kraut", menge: 1},
+        {name: "Zwiebeln", menge: 1},
     ],
     preis: 17.0,
     sauce: GrillplattenSaucen

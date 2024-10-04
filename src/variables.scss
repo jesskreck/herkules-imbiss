@@ -1,6 +1,7 @@
 /*-----Listen-----*/
-$gegrillt: Bifteki, Bratwurst, Currywurst, Grillkäse, Hähnchen, Steak, Suflaki;
+$gegrillt: Bifteki, Bratwurst, Currywurst, Grillkäse, Hähnchen, Steak, Suflaki, Veggie;
 $sonstiges: Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf, Feta, Peperoni, Oliven, Salat, Veggie;
+
 
 /*-----Colors-----*/
 
@@ -169,4 +170,11 @@ $breakpoints: (
   img {
     width: 3rem;
   }
+}
+
+%menu-bestellung {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

@@ -1,6 +1,7 @@
 import type { Speise, Zutat } from "$lib/types";
 
 const GyrostellerSaucen: Zutat[] = [
+    {name: "Zwiebeln", menge: 1},
     {name: "Mayo", menge: 0, preis: 0.6 },
     {name: "Ketchup", menge: 0, preis: 0.6 },
 ]

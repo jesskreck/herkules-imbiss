@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Speise } from "$lib/types";
-  import { openModal } from "../stores/Modal";
+  import { openModal } from "../../stores/Modal";
 
   export let speise: Speise;
 

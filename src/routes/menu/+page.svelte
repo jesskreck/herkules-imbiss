@@ -1,6 +1,4 @@
 <script lang="ts">
-  import type { Speise, SpeiseBestellt } from "$lib/types";
-
   import { Klassiker } from "$lib/data/klassiker";
   import { Pitas } from "$lib/data/pitas";
   import { Grillplatten } from "$lib/data/grillplatten";
@@ -9,11 +7,13 @@
   import { Salate } from "$lib/data/salate";
 
   import MenuHeader from "../../components/MenuHeader.svelte";
-  import SpeiseCard from "../../components/speiseCard.svelte";
-  import Dialog from "../../components/Dialog.svelte";
+  import SpeiseCard from "../../components/utils/SpeiseCard.svelte";
+  import Editor from "../../components/Editor.svelte";
   import Bestelluebersicht from "../../components/Bestelluebersicht.svelte";
 
-  import { modalStore, openModal } from "../../stores/Modal";
+  import { modalStore } from "../../stores/Modal";
+  import { checkoutStore } from "../../stores/Checkout";
+  import Checkout from "../../components/Checkout.svelte";
 
   // States
   let kategorien = [
@@ -27,11 +27,16 @@
   ];
 
   $: ({ showModal, selectedSpeise } = $modalStore);
+  $: ({ showCheckout } = $checkoutStore)
 </script>
 
 
 {#if showModal && selectedSpeise}
-  <Dialog speise={selectedSpeise} ></Dialog>
+  <Editor speise={selectedSpeise} ></Editor>
+{/if}
+
+{#if showCheckout}
+  <Checkout />
 {/if}
 
 <div class="menu">

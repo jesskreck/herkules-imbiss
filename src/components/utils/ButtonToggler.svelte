@@ -5,6 +5,7 @@
   export let auswahl: string;
 
   const optionString = typeof option === "string" ? option : option.name;
+
 </script>
 
 <button

@@ -1,9 +1,12 @@
 <script lang="ts">
   import type { Speise, SpeiseBestellt } from "$lib/types";
-  import SpeiseEditor from "./SpeiseEditor.svelte";
-
+  
   import { modalStore, closeModal } from "../stores/Modal";
-  import SpeiseBestelltEditor from "./SpeiseBestelltEditor.svelte";
+  import EditorDefault from "./EditorDefault.svelte";
+
+  import ModalEditor from "./EditorDefault.svelte";
+  import EditorGyrosteller from "./EditorGyrosteller.svelte";
+  import ModalEditorGyrosteller from "./EditorGyrosteller.svelte";
 
   export let speise: Speise | SpeiseBestellt;
 
@@ -11,23 +14,25 @@
 
   // Automatische Reaktivität für den showModal Zustand aus dem Store
   $: ({ showModal } = $modalStore);
-
+  
   // Setze das Modal automatisch in den offenen Zustand, wenn showModal true ist
-  $: if (dialog && showModal) dialog.showModal();
+  $: if (dialog && showModal) {
+    console.log("check modal");
+    dialog.showModal();
+  }
+  
   let modal: any;
   
   $: {
     switch (true) {
-      case "id" in speise:
-        modal = SpeiseBestelltEditor;
-      case "nr" in speise && speise.nr >= 1 && speise.nr <= 37:
-        modal = SpeiseEditor;
+      case "nr" in speise && speise.nr >= 16 && speise.nr <= 22:
+        modal = EditorGyrosteller;
         break;
-      case "nr" in speise && speise.nr >= 8 && speise.nr <= 15:
-        // modal = ModalPitas;
+      case "id" in speise && speise.speise.nr >= 16 && speise.speise.nr <= 22:
+        modal = EditorGyrosteller;
         break;
       default:
-        modal = null; // Optionaler Fallback
+        modal = EditorDefault;
     }
   }
 
@@ -35,6 +40,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
+class="editor"
   bind:this={dialog}
   on:click|self={closeModal}
 >
