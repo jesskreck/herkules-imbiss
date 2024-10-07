@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Speise, SpeiseBestellt } from "$lib/types";
   
-  import { modalStore, closeModal } from "../stores/Modal";
+  import { editorStore, closeModal } from "../stores/Editor";
   import EditorDefault from "./EditorDefault.svelte";
 
   import ModalEditor from "./EditorDefault.svelte";
@@ -12,11 +12,11 @@
 
   let dialog: HTMLDialogElement;
 
-  // Automatische Reaktivität für den showModal Zustand aus dem Store
-  $: ({ showModal } = $modalStore);
+  // Automatische Reaktivität für den showEditor Zustand aus dem Store
+  $: ({ showEditor } = $editorStore);
   
-  // Setze das Modal automatisch in den offenen Zustand, wenn showModal true ist
-  $: if (dialog && showModal) {
+  // Setze das Modal automatisch in den offenen Zustand, wenn showEditor true ist
+  $: if (dialog && showEditor) {
     console.log("check modal");
     dialog.showModal();
   }

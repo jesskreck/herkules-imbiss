@@ -11,7 +11,7 @@
   import Editor from "../../components/Editor.svelte";
   import Bestelluebersicht from "../../components/Bestelluebersicht.svelte";
 
-  import { modalStore } from "../../stores/Modal";
+  import { editorStore } from "../../stores/Editor";
   import { checkoutStore } from "../../stores/Checkout";
   import Checkout from "../../components/Checkout.svelte";
 
@@ -26,12 +26,12 @@
     // { name: "Getränke", speisen: },
   ];
 
-  $: ({ showModal, selectedSpeise } = $modalStore);
+  $: ({ showEditor, selectedSpeise } = $editorStore);
   $: ({ showCheckout } = $checkoutStore)
 </script>
 
 
-{#if showModal && selectedSpeise}
+{#if showEditor && selectedSpeise}
   <Editor speise={selectedSpeise} ></Editor>
 {/if}
 

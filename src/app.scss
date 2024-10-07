@@ -452,7 +452,7 @@ dialog {
 
   &.checkout {
     height: 100vh;
-    width: 40%;
+    width: 60%;
     padding: $reg-space;
 
     .menu-bestellung {
@@ -470,37 +470,17 @@ dialog {
     }
 
     .checkout {
+      margin-bottom: $reg-space;
+      display: grid;
+      grid-gap: $sm-space;
+      .gridbox {
+        @extend %checkout-gridbox;
+      }
       &-abholung {
-        margin-bottom: $reg-space;
-        display: grid;
-        column-gap: $sm-space;
         grid-template-columns: 1fr auto;
-        grid-template-rows: auto 1fr;
-
-        &-nummer {
-          grid-row-start: 2;
-
-          input {
-            @extend %border-light;
-            width: 100%;
-            height: 100%;
-
-            &:focus-visible {
-              outline-color: transparentize($secondary, 0.5);
-            }
-          }
-        }
-
-        &-zeit {
-          grid-column-start: 2;
-        }
-        .counter {
-          grid-column-start: 2;
-          grid-row-start: 2;
-        }
-        input {
-          padding: $xs-space;
-        }
+      }
+      &-lieferung {
+        grid-template-columns: 2fr 1fr;
       }
     }
 
@@ -522,6 +502,7 @@ dialog {
   font-weight: 600;
   align-items: center;
   flex-grow: 0;
+  justify-content: space-around;
 
   button {
     // font-size: larger;
@@ -551,7 +532,7 @@ dialog {
 
   &-time {
     text-align: center;
-    width: $lg-space
+    width: $lg-space;
   }
 }
 

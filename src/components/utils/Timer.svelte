@@ -33,7 +33,7 @@
 </script>
 
 
-<div class="counter bigger">
+<div class="counter">
     <button  on:click={decrement}> – </button>
     <div class="counter-time">{time}</div>
     <button on:click={increment}> + </button>

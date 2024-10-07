@@ -6,6 +6,7 @@
   import CheckoutAbholung from "./CheckoutAbholung.svelte";
   import CheckoutLieferung from "./CheckoutLieferung.svelte";
 
+  // dialog wird über showCheckout aus checkoutStore auf menu/+page.svelte getriggert
   let dialog: HTMLDialogElement;
 
   // Automatische Reaktivität für den showModal Zustand aus dem Store
@@ -15,20 +16,22 @@
     bestellung = b;
   });
 
-  $: console.log(bestellung);
   // Setze das Modal automatisch in den offenen Zustand, wenn showModal true ist
   $: if (dialog && showCheckout) {
     dialog.showModal();
   }
 
   let modal: any;
+  let liefern: boolean;
+  let liefergebühr = 2.5;
 
   $: {
     switch (true) {
       case auswahl === BestellTyp.b:
         modal = CheckoutAbholung;
         break;
-      case auswahl === BestellTyp.c:
+        case auswahl === BestellTyp.c:
+        liefern = true;
         modal = CheckoutLieferung;
         break;
       default:
@@ -81,7 +84,12 @@
       {#each sortSpeisen(bestellung.speisen) as speiseBestellt (speiseBestellt.id)}
         <BestelluebersichtSpeise {speiseBestellt} />
       {/each}
+      {#if liefern}
       <div class="menu_bestellung-preis">
+        <p>Liefergebühr:</p>
+        <h3>{liefergebühr.toFixed(2)}€</h3>
+      </div>
+    {/if}      <div class="menu_bestellung-preis">
         <p>Gesamtpreis:</p>
         <h2>{bestellung.gesamtpreis.toFixed(2)}€</h2>
       </div>

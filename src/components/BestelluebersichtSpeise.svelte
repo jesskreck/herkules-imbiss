@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Speise, SpeiseBestellt } from "$lib/types";
-  import { openModal } from "../stores/Modal";
+  import { openModal } from "../stores/Editor";
 
   export let speiseBestellt: SpeiseBestellt;
   let id = speiseBestellt.id;

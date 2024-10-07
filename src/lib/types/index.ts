@@ -71,6 +71,7 @@ export interface Bestellung {
   gesamtpreis: number;
   eingangszeit: Date;
   abholzeit: Date;
+  liefern?: boolean;
   telefon?: string;
   adresse?: string;
 }

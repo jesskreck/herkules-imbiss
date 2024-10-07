@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 import type { Bestellung, Speise, SpeiseBestellt } from "$lib/types";
-import { closeModal } from "./Modal";
+import { closeModal } from "./Editor";
 
 export const bestellungStore = writable<Bestellung>({
   nr: 0,

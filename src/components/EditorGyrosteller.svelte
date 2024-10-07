@@ -6,7 +6,7 @@
     addSpeiseToBestellung,
     updateSpeiseInBestellung,
   } from "../stores/Bestellung";
-  import { closeModal } from "../stores/Modal";
+  import { closeModal } from "../stores/Editor";
   import { Gyrosteller } from "$lib/data/gyrosteller";
 
   export let speise: Speise | SpeiseBestellt;

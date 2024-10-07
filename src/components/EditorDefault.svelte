@@ -7,7 +7,7 @@
     updateSpeiseInBestellung,
   } from "../stores/Bestellung";
   import ButtonToggler from "./utils/ButtonToggler.svelte";
-  import { closeModal } from "../stores/Modal";
+  import { closeModal } from "../stores/Editor";
 
   export let speise: Speise | SpeiseBestellt;
   let speiseToEdit: Speise;
