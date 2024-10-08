@@ -2,7 +2,7 @@
   import {tick} from 'svelte'
   import Timer from "./utils/Timer.svelte";
   import Fuse from "fuse.js";
-  import streets from "$lib/data/unique_streets.json";
+  import streets from "$lib/data/streets_joined.json";
 
   let name: string;
   let telefon: string;
@@ -10,24 +10,19 @@
   let hausnummer: string;
   let notiz: string;
 
-  let list = streets.features.map((feature) => ({
-    name: feature.properties.name,
+  let list = streets.map((street) => ({
+    name: street.name,
+    postalCode: street.postalCode,
+    fullDisplay: `${street.name}, ${street.postalCode}`
   }));
 
   const options = {
     includeScore: true,
-    keys: ["name"],
+    keys: ["name", "postalCode"],
   };
 
   let fuse = new Fuse(list, options);
-  let searchResults: string[] = [];
-
-  $: if (adresse) {
-    searchResults = fuse
-      .search(adresse)
-      .map((result) => result.item.name)
-      .slice(0, 5);
-  }
+  let searchResults: {name: string, postalCode: string, fullDisplay: string}[] = [];
 
   function handleInput(event) {
     adresse = event.target.value;
@@ -35,7 +30,7 @@
       // Führe die Suche aus und beschränke auf die ersten 5 Treffer
       searchResults = fuse
         .search(adresse)
-        .map((result) => result.item.name)
+        .map((result) => result.item)
         .slice(0, 5);
     } else {
       // Leere die Ergebnisse, wenn die Adresse leer ist
@@ -43,8 +38,8 @@
     }
   }
 
-  async function selectAddress(choice: string) {
-    adresse = choice;
+  async function selectAddress(choice) {
+    adresse = choice.fullDisplay;
     await tick();
     searchResults = [];
   }
@@ -61,9 +56,13 @@
     />
 
     {#if searchResults.length > 0}
-      {#each searchResults as suggestion}
-        <button on:click={() => selectAddress(suggestion)}>{suggestion}</button>
-      {/each}
+      <div class="checkout-streets-container">
+        <div class="checkout-streets-list">
+          {#each searchResults as suggestion}
+            <button on:click={() => selectAddress(suggestion)}>{suggestion.fullDisplay}</button>
+          {/each}
+        </div>
+      </div>
     {/if}
   </div>
   <div class="gridbox">

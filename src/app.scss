@@ -482,6 +482,22 @@ dialog {
       &-lieferung {
         grid-template-columns: 2fr 1fr;
       }
+      &-streets-container{
+        position: relative;
+      }
+      &-streets-list {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        
+        button {
+          padding: $xs-space;
+          background-color: $color-border;
+          border-bottom: white 1px solid;
+        }
+      }
     }
 
     &[open] {
