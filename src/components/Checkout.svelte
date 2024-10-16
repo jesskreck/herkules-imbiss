@@ -101,7 +101,7 @@
       <div class="flex">
         <button 
         on:click={print}
-        class="btn-primary stretch"><h4>{auswahl} drucken</h4></button>
+        class="btn-primary stretch"><h3>als <u>{auswahl}</u> drucken</h3></button>
       </div>
     </div>
   </div>

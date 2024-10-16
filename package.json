@@ -26,7 +26,9 @@
     "escpos-usb": "^3.0.0-alpha.4",
     "firebase": "^9.23.0",
     "fuse.js": "^7.0.0",
+    "rfs": "^10.0.0",
     "sass": "^1.75.0",
+    "svelte-intersection-observer": "^1.0.0",
     "sveltefire": "^0.4.5"
   }
 }

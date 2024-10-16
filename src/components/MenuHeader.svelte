@@ -1,13 +1,16 @@
 <script lang="ts">
-  import type { Speise, SpeiseBestellt } from "$lib/types";
-
+  export let kategorieSelected = "";
+  
   import { onMount } from "svelte";
+  
   import { Klassiker } from "$lib/data/klassiker";
   import { Pitas } from "$lib/data/pitas";
   import { Grillplatten } from "$lib/data/grillplatten";
   import { Gyrosteller } from "$lib/data/gyrosteller";
   import { Ueberbacken } from "$lib/data/ueberbacken";
   import { Salate } from "$lib/data/salate";
+
+  import logo from "$lib/assets/webp/herkules_icon_bunt.webp";
 
   // States
   let kategorien = [
@@ -19,10 +22,6 @@
     { name: "Salate", speisen: Salate },
     // { name: "Getränke", speisen: },
   ];
-
-  let kategorieSelected = "";
-  let showModal = false;
-  let selectedSpeise: Speise | SpeiseBestellt | null = null;
 
   // Datumanzeige
   let time = new Date();
@@ -57,24 +56,21 @@
       element.scrollIntoView();
     }
   }
-
-  function openModal(speise: Speise | SpeiseBestellt) {
-    selectedSpeise = speise;
-    showModal = true;
-  }
 </script>
 
-<p>{date}</p>
-    <p>{hours}:{minutes}:{seconds} Uhr</p>
-    <div class="menu_header-jumper">
-      {#each kategorien as kategorie}
-        <button
-          class:selected={kategorieSelected === kategorie.name}
-          class="btn-kategorie"
-          on:click={() => jumpToKategorie(kategorie.name)}
-        >
-          {kategorie.name}
-        </button>
-      {/each}
-    </div>
-
+<div class="menu_header-logo">
+  <img alt="Herkules Grill Logo" src={logo} />
+</div>
+<p class="menu_header-time">{hours}:{minutes}:{seconds} Uhr</p>
+<p class="menu_header-date">{date}</p>
+<div class="menu_header-jumpToCategory">
+  {#each kategorien as kategorie}
+    <button
+      class:selected={kategorieSelected === kategorie.name}
+      class="btn-kategorie"
+      on:click={() => jumpToKategorie(kategorie.name)}
+    >
+      {kategorie.name}
+    </button>
+  {/each}
+</div>

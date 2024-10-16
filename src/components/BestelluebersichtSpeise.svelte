@@ -22,11 +22,14 @@
   on:click={() => openModal(speiseBestellt)}
   class="menu_bestellung-list-item"
 >
-    <p class="menu_bestellung-list-item-menge">{speiseBestellt.menge}x</p>
-    <h2 class="menu_bestellung-list-item-name">#{speiseBestellt.speise.nr} {speiseBestellt.speise.name}</h2>
-    <h3 class="menu_bestellung-list-item-preis">
-      {speiseBestellt.gesamtpreis.toFixed(2)}€
-    </h3>
+  <h2 class="menu_bestellung-list-item-name">
+    #{speiseBestellt.speise.nr}
+    {speiseBestellt.speise.name}
+  </h2>
+  <p class="menu_bestellung-list-item-menge">{speiseBestellt.menge}x</p>
+  <h3 class="menu_bestellung-list-item-preis">
+    {speiseBestellt.gesamtpreis.toFixed(2)}€
+  </h3>
   <div class="menu_bestellung-list-item-zutaten">
     {#each zutatenliste as zutat, index}
       <span>{zutat}</span>

@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div class="menu_bestellung-list">
+<div class="menu_bestellung-list" class:liefern>
   {#each sortSpeisen(bestellung.speisen) as speiseBestellt (speiseBestellt.id)}
     <BestelluebersichtSpeise {speiseBestellt} />
   {/each}
@@ -59,7 +59,7 @@
     <button class="btn-primary stretch" 
     on:click={() => openCheckout(auswahl)}
     
-      ><h4>Bestellung aufnehmen</h4></button
+      ><h3>Bestellung aufnehmen</h3></button
     >
   </div>
 </div>

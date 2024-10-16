@@ -8,8 +8,8 @@
 
 <button on:click={() => openModal(speise)} class="card-speise">
   <div class="card-speise-top">
-    <p class="card-speise-number">#{speise.nr}</p>
+    <h1 class="card-speise-number">#{speise.nr}</h1>
     <p>{speise.preis.toFixed(2)}€</p>
   </div>
-  <h3>{speise.name}</h3>
+  <h2>{speise.name}</h2>
 </button>

@@ -47,43 +47,98 @@ h6 {
 .menu {
   grid-column: span 8;
   background: $bg-color;
-  padding: $reg-space;
+  height: 100vh;
 
   &_header {
-    position: sticky;
-    top: $reg-space;
+    height: 12vh;
+    padding: 2vh $reg-space 0;
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr;
+    grid-template-rows: 1fr auto;
 
-    &-jumper {
+    &-logo {
+      grid-row: span 2;
+      height: 10vh;
+      padding-right: $sm-space;
+
+      img {
+        height: 100%;
+        padding: $xs-space;
+      }
+    }
+
+    &-time {
+      align-self: center;
+    }
+
+    &-date {
+      align-self: center;
+      text-align: end;
+    }
+
+    &-jumpToCategory {
+      grid-column: span 2;
       display: flex;
       gap: $sm-space;
-      padding-top: $reg-space;
+      justify-content: space-between;
+
+      .btn-kategorie {
+        padding: $xs-space 0;
+        border: none;
+        background: none;
+        font-weight: 700;
+        @extend %font-sm;
+        cursor: pointer;
+
+        &.selected {
+          color: $secondary;
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background-color: $secondary;
+          }
+        }
+      }
     }
   }
 
   &_kategorien {
-    // top: 7rem;
-    // position: sticky;
-    height: 75vh;
+    padding: 0 $reg-space;
+    height: 88vh;
     overflow-y: scroll;
     scroll-behavior: smooth;
 
     &-heading {
-      padding: $reg-space 0 $xs-space;
+      padding: $sm-space 0 $xs-space;
       color: $grey;
-      font-weight: 500;
+      font-weight: 400;
     }
   }
+
+
   &_bestellung {
     @extend %menu-bestellung;
-    grid-column: span 3;
-    padding: $reg-space;
+    grid-column: span 4;
 
     &-list {
       flex-grow: 1;
       margin: $sm-space 0;
+      max-height: 67vh;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+
+      &.liefern {
+        max-height: 60vh;
+      }
 
       &-item {
-        font-size: smaller;
+        @extend %font-sm;
         text-align: right;
         // resetting grid default for padding-inline:
         padding: 0;
@@ -104,6 +159,9 @@ h6 {
         &-name {
           grid-area: name;
           text-align: left;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         &-preis {
           grid-area: preis;
@@ -112,6 +170,7 @@ h6 {
         &-zutaten {
           grid-area: zutaten;
           text-align: left;
+          @extend %font-sm;
 
           span:not(:last-child)::after {
             content: ", ";
@@ -124,17 +183,6 @@ h6 {
           color: $secondary;
         }
 
-        // // FÜR ALTE VARIANTE
-        // &-buttons {
-        //   display: flex;
-        //   flex-direction: row;
-        //   justify-content: space-between;
-        //   align-items: baseline;
-
-        //   .btn-delete {
-        //     align-self: stretch;
-        //   }
-        // }
       }
     }
 
@@ -164,10 +212,11 @@ button {
 .btn {
   &-primary {
     @extend %btn-primary;
-    padding: $sm-space;
+    padding: $xs-space $sm-space;
   }
 
   &-toggler {
+    @extend %font-sm;
     color: $grey;
     border: none;
     background-color: $color-border;
@@ -263,35 +312,10 @@ button {
 
 /*-----Menü Übersicht Speisen-----*/
 
-.btn-kategorie {
-  padding: $sm-space $xs-space $xs-space 0;
-  border: none;
-  background: none;
-  font-weight: 600;
-  font-size: smaller;
-  cursor: pointer;
-
-  &.selected {
-    color: $secondary;
-    position: relative;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60%;
-      height: 3px;
-      background-color: $secondary;
-    }
-  }
-}
-
 .container-card-speise {
   display: grid;
-  gap: $reg-space;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  margin-right: $lg-space;
+  gap: $sm-space $reg-space;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   margin-bottom: $reg-space;
 }
 
@@ -314,12 +338,10 @@ button {
 
   &-number {
     line-height: 100%;
-    font-size: 2.5rem;
     color: $primary;
-    font-weight: 600;
   }
 
-  h3 {
+  h2 {
     padding-top: 0.5rem;
   }
 }
@@ -453,7 +475,6 @@ dialog {
   &.checkout {
     height: 100vh;
     width: 60%;
-    padding: $reg-space;
 
     .menu-bestellung {
       // ursprüngliche props werden irgendwo vom dialog überschrieben, daher:
@@ -482,7 +503,7 @@ dialog {
       &-lieferung {
         grid-template-columns: 2fr 1fr;
       }
-      &-streets-container{
+      &-streets-container {
         position: relative;
       }
       &-streets-list {
@@ -491,7 +512,7 @@ dialog {
         position: absolute;
         z-index: 1;
         width: 100%;
-        
+
         button {
           padding: $xs-space;
           background-color: $color-border;
@@ -521,14 +542,13 @@ dialog {
   justify-content: space-around;
 
   button {
-    // font-size: larger;
     align-self: stretch;
     padding: 0.1rem $xs-space;
   }
 
   &.bigger {
     button {
-      font-size: larger;
+      // font-size: larger;
       align-self: stretch;
 
       &:nth-of-type(1) {

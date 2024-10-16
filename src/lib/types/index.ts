@@ -3,7 +3,7 @@
 import type { Writable } from "svelte/store";
 
 export enum BestellTyp {
-  a = "Hier Essen",
+  a = "vor Ort",
   b = "Abholung",
   c = "Lieferung",
 }

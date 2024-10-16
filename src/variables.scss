@@ -29,18 +29,58 @@ $gradient: linear-gradient(180deg, #4dc2f0 0%, #f61067 100%);
 
 /*-----Fonts-----*/
 
+
 @font-face {
   font-family: "GeneralSans-Variable";
   src:
-    url("/fonts/GeneralSans-Variable.woff2") format("woff2"),
-    url("/fonts/GeneralSans-Variable.woff") format("woff"),
-    url("/fonts/GeneralSans-Variable.ttf") format("truetype");
+  url("/fonts/GeneralSans-Variable.woff2") format("woff2"),
+  url("/fonts/GeneralSans-Variable.woff") format("woff"),
+  url("/fonts/GeneralSans-Variable.ttf") format("truetype");
   font-weight: 200 700;
   font-display: swap;
   font-style: normal;
 }
 
 /*-----Typography-----*/
+@import "../node_modules/rfs/scss";
+
+h1 {
+  @include font-size(2.2rem)
+}
+
+h2 {
+  @include font-size(1.1rem)
+}
+
+h3 {
+  @include font-size(0.8rem)
+}
+
+h4 {
+  @include font-size(1rem);
+  color: red;
+}
+
+h5 {
+  @include font-size(1rem);
+  color: red;
+}
+
+%font-xs {
+  @include font-size(0.1rem);
+}
+
+%font-sm {
+  @include font-size(0.7rem);
+}
+
+%font-reg {
+  @include font-size(0.8rem);
+}
+
+p {
+  @extend %font-reg;
+}
 
 $font-size-basis: 16px;
 $line-height: 1.5;
@@ -174,6 +214,7 @@ $breakpoints: (
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 2vh $reg-space;
 }
 
 %checkout-gridbox {
