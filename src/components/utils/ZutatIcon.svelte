@@ -6,70 +6,70 @@
 
   switch (name) {
     case "Bifteki":
-      imagePath = "/src/lib/assets/webp/zutaten/bifteki.webp";
+      imagePath = "/static/assets/webp/zutaten/bifteki.webp";
       break;
     case "Bratwurst":
-      imagePath = "/src/lib/assets/webp/zutaten/bratwurst.webp";
+      imagePath = "/static/assets/webp/zutaten/bratwurst.webp";
       break;
     case "Currywurst":
-      imagePath = "/src/lib/assets/webp/zutaten/currywurst.webp";
+      imagePath = "/static/assets/webp/zutaten/currywurst.webp";
       break;
     case "Feta":
-      imagePath = "/src/lib/assets/webp/zutaten/feta.webp";
+      imagePath = "/static/assets/webp/zutaten/feta.webp";
       break;
     case "Peperoni":
-      imagePath = "/src/lib/assets/webp/zutaten/feta.webp";
+      imagePath = "/static/assets/webp/zutaten/feta.webp";
       break;
     case "Oliven":
-      imagePath = "/src/lib/assets/webp/zutaten/feta.webp";
+      imagePath = "/static/assets/webp/zutaten/feta.webp";
       break;
     case "Grillkäse":
-      imagePath = "/src/lib/assets/webp/zutaten/grillkaese.webp";
+      imagePath = "/static/assets/webp/zutaten/grillkaese.webp";
       break;
     case "Gyros":
-      imagePath = "/src/lib/assets/webp/zutaten/gyros.webp";
+      imagePath = "/static/assets/webp/zutaten/gyros.webp";
       break;
     case "Hähnchen":
-      imagePath = "/src/lib/assets/webp/zutaten/haehnchen.webp";
+      imagePath = "/static/assets/webp/zutaten/haehnchen.webp";
       break;
     case "Ketchup":
-      imagePath = "/src/lib/assets/webp/zutaten/ketchup.webp";
+      imagePath = "/static/assets/webp/zutaten/ketchup.webp";
       break;
     case "Kraut":
-      imagePath = "/src/lib/assets/webp/zutaten/kraut.webp";
+      imagePath = "/static/assets/webp/zutaten/kraut.webp";
       break;
     case "Mayo":
-      imagePath = "/src/lib/assets/webp/zutaten/mayo.webp";
+      imagePath = "/static/assets/webp/zutaten/mayo.webp";
       break;
     case "Pita":
-      imagePath = "/src/lib/assets/webp/zutaten/pita.webp";
+      imagePath = "/static/assets/webp/zutaten/pita.webp";
       break;
     case "Pommes":
-      imagePath = "/src/lib/assets/webp/zutaten/pommes.webp";
+      imagePath = "/static/assets/webp/zutaten/pommes.webp";
       break;
     case "Salat":
-      imagePath = "/src/lib/assets/webp/zutaten/salat.webp";
+      imagePath = "/static/assets/webp/zutaten/salat.webp";
       break;
     case "Feta mit Salat":
-      imagePath = "/src/lib/assets/webp/zutaten/salat.webp";
+      imagePath = "/static/assets/webp/zutaten/salat.webp";
       break;
     case "Senf":
-      imagePath = "/src/lib/assets/webp/zutaten/senf.webp";
+      imagePath = "/static/assets/webp/zutaten/senf.webp";
       break;
     case "Steak":
-      imagePath = "/src/lib/assets/webp/zutaten/steak.webp";
+      imagePath = "/static/assets/webp/zutaten/steak.webp";
       break;
     case "Suflaki":
-      imagePath = "/src/lib/assets/webp/zutaten/suflaki.webp";
+      imagePath = "/static/assets/webp/zutaten/suflaki.webp";
       break;
     case "Tzaziki":
-      imagePath = "/src/lib/assets/webp/zutaten/tzaziki.webp";
+      imagePath = "/static/assets/webp/zutaten/tzaziki.webp";
       break;
     case "Veggie":
-      imagePath = "/src/lib/assets/webp/zutaten/veggie.webp";
+      imagePath = "/static/assets/webp/zutaten/veggie.webp";
       break;
     case "Zwiebeln":
-      imagePath = "/src/lib/assets/webp/zutaten/zwiebel.webp";
+      imagePath = "/static/assets/webp/zutaten/zwiebel.webp";
       break;
   }
 
