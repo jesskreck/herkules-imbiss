@@ -14,10 +14,6 @@
     bestellung = b;
   });
 
-  //Bestellung sortieren
-  function sortSpeisen(speisen: SpeiseBestellt[]): SpeiseBestellt[] {
-    return speisen.slice().sort((a, b) => a.speise.nr - b.speise.nr);
-  }
 
   //Lieferung
   let liefergebühr = 2.5;
@@ -39,7 +35,7 @@
 </div>
 
 <div class="menu_bestellung-list" class:liefern>
-  {#each sortSpeisen(bestellung.speisen) as speiseBestellt (speiseBestellt.id)}
+  {#each bestellung.speisen as speiseBestellt (speiseBestellt.id)}
     <BestelluebersichtSpeise {speiseBestellt} />
   {/each}
 </div>

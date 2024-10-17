@@ -9,6 +9,7 @@
   } from "../stores/Bestellung";
   import ButtonToggler from "./utils/ButtonToggler.svelte";
   import { closeModal } from "../stores/Editor";
+  import ZutatToggler from "./utils/ZutatToggler.svelte";
 
   export let speise: Speise | SpeiseBestellt;
   let speiseToEdit: Speise;
@@ -18,7 +19,11 @@
   let einzelpreis: number;
   let aufpreis: number = 0;
   let saucenAuswahl: string;
+  let optionAuswahl: string;
 
+  $: console.log(optionAuswahl);
+
+  
   const hasID = "id" in speise;
 
   if (hasID) {
@@ -94,7 +99,7 @@
     <h3>Zutaten</h3>
 
     <div class="editor-zutaten">
-      <!-- Zwiebeln und Kraut kleiner rendern (für Pitas) -->
+      <!-- für Pitas: Zwiebeln und Kraut kleiner rendern -->
       {#if (speiseToEdit.nr >= 8 && speiseToEdit.nr <= 15) || (speiseToEdit.nr >= 23 && speiseToEdit.nr <= 32)}
         {#each speiseToEdit.zutaten.filter((zutat) => zutat.name !== "Zwiebeln" && zutat.name !== "Kraut") as zutat}
           <ZutatButton on:mengeChanged={updateZutat} {zutat} />
@@ -106,11 +111,20 @@
           {/each}
         </div>
 
-        <!-- alle Zutaten gleich groß rendern -->
+        <!-- alle anderen: alle Zutaten gleich groß rendern -->
       {:else}
         {#each speiseToEdit.zutaten as zutat}
           <ZutatButton on:mengeChanged={updateZutat} {zutat} />
         {/each}
+      {/if}
+
+      <!-- für Zutatenoptionen (zB Salat Topping) -->
+      {#if speiseToEdit.option}
+        <div class="container-toggler">
+          {#each speiseToEdit.option as zutat}
+            <ZutatToggler bind:auswahl={optionAuswahl} option={zutat} />
+          {/each}
+        </div>
       {/if}
     </div>
   </div>
@@ -121,7 +135,7 @@
       {#if speiseToEdit.singleSauceOnly}
         <div class="container-toggler">
           {#each speiseToEdit.sauce as zutat}
-            <ButtonToggler bind:auswahl={saucenAuswahl} option={zutat} />
+            <ButtonToggler on:mengeChanged={updateZutat} bind:auswahl={saucenAuswahl} option={zutat} />
           {/each}
         </div>
       {:else}
@@ -152,6 +166,7 @@
         class="btn-primary stretch"
         on:click={saveChanges}
         disabled={menge === 0 ||
+          optionAuswahl === undefined ||
           (speiseToEdit.singleSauceOnly && saucenAuswahl === "")}
         ><strong>hinzufügen</strong> {gesamtpreis.toFixed(2)}€</button
       >

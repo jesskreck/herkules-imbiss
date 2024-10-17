@@ -17,6 +17,12 @@
     case "Feta":
       imagePath = "/src/lib/assets/webp/zutaten/feta.webp";
       break;
+    case "Peperoni":
+      imagePath = "/src/lib/assets/webp/zutaten/feta.webp";
+      break;
+    case "Oliven":
+      imagePath = "/src/lib/assets/webp/zutaten/feta.webp";
+      break;
     case "Grillkäse":
       imagePath = "/src/lib/assets/webp/zutaten/grillkaese.webp";
       break;
@@ -44,7 +50,7 @@
     case "Salat":
       imagePath = "/src/lib/assets/webp/zutaten/salat.webp";
       break;
-      case "Feta mit Salat":
+    case "Feta mit Salat":
       imagePath = "/src/lib/assets/webp/zutaten/salat.webp";
       break;
     case "Senf":
@@ -60,8 +66,8 @@
       imagePath = "/src/lib/assets/webp/zutaten/tzaziki.webp";
       break;
     case "Veggie":
-    imagePath = "/src/lib/assets/webp/zutaten/veggie.webp";
-    break;
+      imagePath = "/src/lib/assets/webp/zutaten/veggie.webp";
+      break;
     case "Zwiebeln":
       imagePath = "/src/lib/assets/webp/zutaten/zwiebel.webp";
       break;

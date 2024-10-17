@@ -40,6 +40,25 @@ export function updateSpeiseInBestellung(updatedSpeise: SpeiseBestellt) {
   });
 }
 
+export function removeSpeiseFromBestellung(speiseToRemove: SpeiseBestellt) {
+  bestellungStore.update((bestellung) => {
+    const remainingSpeisen = bestellung.speisen.filter(
+      (speiseBestellt) => speiseBestellt.id !== speiseToRemove.id
+    );
+
+    const neuerGesamtpreis = remainingSpeisen.reduce(
+      (acc: number, curr: SpeiseBestellt) => acc + curr.gesamtpreis,
+      0
+    );
+
+    return {
+      ...bestellung,
+      speisen: remainingSpeisen,
+      gesamtpreis: neuerGesamtpreis
+    }
+  })
+}
+
 export function setAbholzeit(time: string) {
   bestellungStore.update((bestellung) => {
     const [hours, minutes] = time.split(":").map(Number);

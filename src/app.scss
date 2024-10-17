@@ -119,8 +119,11 @@ h6 {
       color: $grey;
       font-weight: 400;
     }
-  }
 
+    section:last-child{
+      padding-bottom: 10rem;
+    }
+  }
 
   &_bestellung {
     @extend %menu-bestellung;
@@ -134,7 +137,7 @@ h6 {
       scroll-behavior: smooth;
 
       &.liefern {
-        max-height: 60vh;
+        max-height: 61vh;
       }
 
       &-item {
@@ -152,10 +155,6 @@ h6 {
           "zutaten zutaten zutaten"
           "notiz notiz notiz";
 
-        &-menge {
-          grid-area: menge;
-        }
-
         &-name {
           grid-area: name;
           text-align: left;
@@ -163,6 +162,15 @@ h6 {
           white-space: nowrap;
           text-overflow: ellipsis;
         }
+
+        &-size {
+          font-weight: 400;
+          color: $primary;
+        }
+        &-menge {
+          grid-area: menge;
+        }
+
         &-preis {
           grid-area: preis;
         }
@@ -182,7 +190,6 @@ h6 {
           text-align: left;
           color: $secondary;
         }
-
       }
     }
 
@@ -190,7 +197,10 @@ h6 {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: $sm-space;
+
+      h2 {
+        margin-bottom: $sm-space;
+      }
     }
   }
 }
@@ -363,25 +373,49 @@ button {
     }
   }
 
+  &.untoggled {
+    background-color: transparentize($color-border, 0.8) !important;
+    box-shadow: none !important;
+    img {
+      opacity: 0.25;
+    }
+  }
+
   &.Gyros {
     background-color: $blue;
     border-color: $blue;
+    &.untoggled {
+      border-color: transparentize($blue, $amount: 0.8);
+      color: transparentize($blue, $amount: 0.8);
+    }
   }
 
   &.Pommes {
     background-color: $orange;
     border-color: $orange;
+    &.untoggled {
+      border-color: transparentize($orange, $amount: 0.8);
+      color: transparentize($orange, $amount: 0.8);
+    }
   }
 
   &.ueberbacken {
     background-color: $green;
     border-color: $green;
+    &.untoggled {
+      border-color: transparentize($green, $amount: 0.8);
+      color: transparentize($green, $amount: 0.8);
+    }
   }
 
   @each $zutat in $sonstiges {
     &.#{$zutat} {
       background-color: $grey;
       border-color: $grey;
+      &.untoggled {
+        border-color: transparentize($grey, $amount: 0.8);
+        color: transparentize($grey, $amount: 0.8);
+      }
     }
   }
 
@@ -389,6 +423,10 @@ button {
     &.#{$zutat} {
       background-color: $lila;
       border-color: $lila;
+      &.untoggled {
+        border-color: transparentize($lila, $amount: 0.8);
+        color: transparentize($lila, $amount: 0.8);
+      }
     }
   }
 }
@@ -397,7 +435,15 @@ button {
   margin: $sm-space $xs-space;
 
   &-container {
-    margin-bottom: $reg-space;
+    margin-bottom: $sm-space;
+  }
+
+  .container-toggler {
+    gap: $xs-space;
+    .btn-zutat {
+      @extend %btn-zutat-toggler;
+      margin-right: 0;
+    }
   }
 
   &-zutaten {
@@ -409,15 +455,6 @@ button {
     }
   }
 
-  &-saucen {
-    display: flex;
-    flex-direction: row;
-
-    .btn-zutat {
-      @extend %btn-zutat-sm;
-    }
-  }
-
   &-extras {
     display: flex;
     flex-direction: column;
@@ -425,6 +462,16 @@ button {
 
     .btn-zutat {
       @extend %btn-zutat-xs;
+    }
+  }
+
+  &-saucen {
+    display: flex;
+    flex-direction: row;
+
+    .btn-zutat {
+      @extend %btn-zutat-sm;
+      gap: $xs-space;
     }
   }
 
@@ -445,6 +492,7 @@ button {
 dialog {
   padding: 0;
   border: none;
+  max-height: 100vh;
   h1 {
     padding-bottom: $sm-space;
   }
@@ -472,33 +520,33 @@ dialog {
     }
   }
 
-  &.checkout {
+  &.dialog_checkout {
     height: 100vh;
-    width: 60%;
+    width: 70%;
 
     .menu-bestellung {
       // ursprüngliche props werden irgendwo vom dialog überschrieben, daher:
       @extend %menu-bestellung;
 
-      .btn-primary {
-        // button etwas höher setzen damit nicht aus Versehen auf Drucken geklickt wird
-        margin-bottom: $reg-space;
-      }
-
       h3:first-child {
         text-align: center;
       }
     }
+    .btn-primary {
+      padding-left: $lg-space;
+      padding-right: $lg-space;
+    }
 
     .checkout {
-      margin-bottom: $reg-space;
+      margin-bottom: $sm-space;
       display: grid;
-      grid-gap: $sm-space;
+      grid-gap: $xs-space $sm-space;
+
       .gridbox {
         @extend %checkout-gridbox;
       }
       &-abholung {
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 2fr 1fr;
       }
       &-lieferung {
         grid-template-columns: 2fr 1fr;
@@ -514,6 +562,7 @@ dialog {
         width: 100%;
 
         button {
+          @extend %font-reg;
           padding: $xs-space;
           background-color: $color-border;
           border-bottom: white 1px solid;
@@ -523,6 +572,8 @@ dialog {
 
     &[open] {
       margin-left: auto;
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     &:-internal-dialog-in-top-layer {

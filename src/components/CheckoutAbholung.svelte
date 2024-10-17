@@ -6,13 +6,13 @@
 
 <div class="checkout checkout-abholung">
   <div class="gridbox">
-    <h4>Telefon (optional)</h4>
+    <h3>Telefon (optional)</h3>
 
       <input bind:value={telefon} placeholder="Nummer...|" />
 
   </div>
   <div class="gridbox">
-    <h4 class="checkout-abholung-zeit">Abholzeit</h4>
+    <h3 class="checkout-abholung-zeit">Abholzeit</h3>
     <Timer />
   </div>
 </div>

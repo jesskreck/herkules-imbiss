@@ -72,8 +72,8 @@ export const Nr6: Speise = {
     ],
   };
 
-export const Nr7: Speise = {
-    nr: 7,
+export const Nr7_1: Speise = {
+    nr: 7.1,
     name: "Extras (Schälchen)",
     zutaten: [
         {name: "Kraut", menge: 0, preis: 3.5},
@@ -86,4 +86,16 @@ export const Nr7: Speise = {
     preis: 0
 }
 
-export const Klassiker = [Nr1, Nr2, Nr3, Nr4, Nr5, Nr6, Nr7];
+export const Nr7_2: Speise = {
+  nr: 7.2,
+  name: "Extras (gegrillt)",
+  zutaten: [
+      {name: "Bifteki", menge: 0, preis: 3.5},
+      {name: "Steak", menge: 0, preis: 3.5},
+      {name: "Suflaki", menge: 0, preis: 3.5},
+      {name: "Hähnchen", menge: 0, preis: 3.5},
+  ],
+  preis: 0
+}
+
+export const Klassiker = [Nr1, Nr2, Nr3, Nr4, Nr5, Nr6, Nr7_1, Nr7_2];

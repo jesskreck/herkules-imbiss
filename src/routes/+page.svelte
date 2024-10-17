@@ -14,6 +14,7 @@
   import logo from "$lib/assets/webp/herkules_icon_bunt.webp";
 
   import { onMount } from "svelte";
+  import { Getraenke } from "$lib/data/getraenke";
 
   // States
   let kategorien = [
@@ -23,14 +24,13 @@
     { name: "Grillplatten", speisen: Grillplatten },
     { name: "Überbacken", speisen: Ueberbacken },
     { name: "Salate", speisen: Salate },
-    // { name: "Getränke", speisen: },
+    { name: "Getränke", speisen: Getraenke},
   ];
   let kategorieSelected = "Klassiker";
 
   // Reaktive States
   $: ({ showEditor, selectedSpeise } = $editorStore);
   $: ({ showCheckout } = $checkoutStore);
-  $: console.log("kategorie: ", kategorieSelected);
 
   // Datumanzeige
   let time = new Date();

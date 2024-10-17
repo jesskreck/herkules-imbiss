@@ -42,57 +42,65 @@ $gradient: linear-gradient(180deg, #4dc2f0 0%, #f61067 100%);
 }
 
 /*-----Typography-----*/
+
+$font-size-sm: 0.7rem;
+$font-size-basis: 0.8rem;
+$font-size-lg: 1.1rem;
+$font-size-xl: 2.2rem;
+
+$line-height: 1.5;
+$chperline: 70ch;
+$smaller-text: 80%;
+$bigger-text: 120%;
+
 @import "../node_modules/rfs/scss";
 
-h1 {
-  @include font-size(2.2rem)
-}
-
-h2 {
-  @include font-size(1.1rem)
-}
-
-h3 {
-  @include font-size(0.8rem)
-}
-
-h4 {
-  @include font-size(1rem);
-  color: red;
-}
-
-h5 {
-  @include font-size(1rem);
-  color: red;
-}
-
-%font-xs {
-  @include font-size(0.1rem);
-}
 
 %font-sm {
-  @include font-size(0.7rem);
+  @include font-size($font-size-sm);
 }
 
 %font-reg {
-  @include font-size(0.8rem);
+  @include font-size($font-size-basis);
+}
+
+%font-lg {
+  @include font-size($font-size-lg);
 }
 
 p {
   @extend %font-reg;
 }
 
-$font-size-basis: 16px;
-$line-height: 1.5;
-$chperline: 70ch;
-$smaller-text: 80%;
-$bigger-text: 120%;
+h1 {
+  @include font-size($font-size-xl)
+}
+
+h2 {
+  @include font-size($font-size-lg)
+}
+
+h3 {
+  @include font-size($font-size-basis)
+}
+
+h4, h5 {
+  color: red;
+}
+
+
+input {
+  font-size: $font-size-basis !important;
+}
+
+
 
 /*-----Paddings & Gap-----*/
 
 $reg-space: 2rem;
 $sm-space: calc($reg-space / 2);
 $xs-space: calc($sm-space / 2);
+$xxs-space: calc($xs-space / 2);
 $lg-space: calc($reg-space * 2);
 $padding-btn: $sm-space $xs-space;
 
@@ -166,47 +174,58 @@ $breakpoints: (
   border: none;
 }
 
-%btn-zutat-lg {
-  min-width: 8rem;
-  display: flex;
+%btn-zutat-basics {
+  @extend %font-reg;
+  font-weight: 500;
+  width: 8rem;
   box-shadow: $box-shadow-sm;
-  flex-direction: column;
   color: white;
   margin-right: $sm-space;
-  align-items: center;
+}
 
+%btn-zutat-lg {
+  @extend %btn-zutat-basics;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   img {
     width: 6rem;
     margin: 0 auto;
-    padding: $xs-space;
   }
 }
 
 %btn-zutat-sm {
+  @extend %btn-zutat-basics;
   display: flex;
-  box-shadow: $box-shadow-sm;
   flex-direction: row;
-  color: white;
-  margin-right: $sm-space;
   align-items: center;
-
   img {
-    width: 4rem;
-    margin: 0 auto;
-    padding: $xs-space;
+    width: 3rem;
   }
 }
 
 %btn-zutat-xs {
+  @extend %btn-zutat-basics;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: start;
-  box-shadow: $box-shadow-sm;
-  color: white;
-
   img {
     width: 3rem;
   }
+}
+
+%btn-zutat-toggler {
+  @extend %font-reg;
+  font-weight: 500;
+  width: 6.5rem;
+  box-shadow: $box-shadow-sm;
+  color: white;
+  margin-right: $sm-space;
+  img {
+    width: 5.5rem;
+    margin: 0 auto;
+  }
+
 }
 
 %menu-bestellung {
@@ -221,11 +240,15 @@ $breakpoints: (
   display: grid;
   grid-template-rows: auto 1fr;
 
+  h3 {
+    justify-self: start;
+  }
+
   input {
     @extend %border-light;
     width: 100%;
     height: 100%;
-    padding: $xs-space;
+    padding: $xxs-space;
 
     &:focus-visible {
       outline-color: transparentize($secondary, 0.5);
@@ -233,6 +256,6 @@ $breakpoints: (
   }
 
   .counter button {
-    padding: $xs-space $reg-space;
+    padding: $xxs-space $xs-space;
   }
 }

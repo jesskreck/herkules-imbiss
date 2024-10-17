@@ -8,7 +8,13 @@ export enum BestellTyp {
   c = "Lieferung",
 }
 
+export enum Size {
+  a = "normal",
+  b = "klein",
+}
+
 export const BestellTypen = Object.values(BestellTyp)
+export const SizeValues = Object.values(Size)
 
 export type ZutatT =
   | "Gyros"
@@ -38,6 +44,12 @@ export type ZutatT =
   | "Salat"
   | "Essig Öl"
   | "French Dressing"
+  | "Cola"
+  | "Fanta"
+  | "Sprite"
+  | "Schorle"
+  | "Multi"
+  | "Wasser"
 
 
 export interface Zutat {
@@ -62,6 +74,7 @@ export interface SpeiseBestellt {
   speise: Speise;
   menge: number;
   gesamtpreis: number;
+  size?: string;
   notiz?: string;
 }
 

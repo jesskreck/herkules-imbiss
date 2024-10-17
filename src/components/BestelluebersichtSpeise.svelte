@@ -24,6 +24,9 @@
 >
   <h2 class="menu_bestellung-list-item-name">
     #{speiseBestellt.speise.nr}
+    {#if speiseBestellt.size === "klein"}
+    <span class="menu_bestellung-list-item-size">klein</span>
+    {/if}
     {speiseBestellt.speise.name}
   </h2>
   <p class="menu_bestellung-list-item-menge">{speiseBestellt.menge}x</p>

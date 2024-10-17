@@ -48,7 +48,7 @@
 
 <div class="checkout checkout-lieferung">
   <div class="gridbox">
-    <h4>Straße</h4>
+    <h3>Straße</h3>
     <input
       bind:value={adresse}
       placeholder="Straße...|"
@@ -66,23 +66,23 @@
     {/if}
   </div>
   <div class="gridbox">
-    <h4>Nr.</h4>
+    <h3>Nr.</h3>
     <input bind:value={hausnummer} placeholder="Hausnummer...|" />
   </div>
   <div class="gridbox">
-    <h4>Name an der Klingel</h4>
+    <h3>Name an der Klingel</h3>
     <input bind:value={name} placeholder="Name...|" />
   </div>
   <div class="gridbox">
-    <h4>Telefon</h4>
+    <h3>Telefon</h3>
     <input bind:value={telefon} placeholder="Telefonnummer...|" />
   </div>
   <div class="gridbox">
-    <h4>Notiz</h4>
+    <h3>Notiz</h3>
     <input bind:value={notiz} placeholder="Notiz...|" />
   </div>
   <div class="gridbox">
-    <h4 class="checkout-lieferung-zeit">Abholzeit</h4>
+    <h3 class="checkout-lieferung-zeit">Abholzeit</h3>
     <Timer />
   </div>
 </div>
