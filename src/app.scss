@@ -325,7 +325,7 @@ button {
 .container-card-speise {
   display: grid;
   gap: $sm-space $reg-space;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, 17rem);
   margin-bottom: $reg-space;
 }
 

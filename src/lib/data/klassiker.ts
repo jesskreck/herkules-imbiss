@@ -4,7 +4,7 @@ export const Nr1: Speise = {
   nr: 1,
   name: "Gyros",
   zutaten: [
-    { name: "Gyros", menge: 1 },
+    { name: "Gyros", menge: 1, canToggle: false },
     { name: "Zwiebeln", menge: 1 },
   ],
   preis: 9.0,
@@ -14,7 +14,7 @@ export const Nr2: Speise = {
   nr: 2,
   name: "Gyros Box",
   zutaten: [
-    { name: "Gyros", menge: 1 },
+    { name: "Gyros", menge: 1, canToggle: false },
     { name: "Pommes", menge: 1 },
     { name: "Zwiebeln", menge: 1 },
   ],
@@ -30,7 +30,7 @@ export const Nr3: Speise = {
   nr: 3,
   name: "XXL Bratwurst",
   zutaten: [
-    { name: "Bratwurst", menge: 1 },
+    { name: "Bratwurst", menge: 1, canToggle: false },
     { name: "Pita", menge: 1 },
   ],
   preis: 4.0,
@@ -41,7 +41,7 @@ export const Nr4: Speise = {
   nr: 4,
   name: "XXL Currywurst",
   zutaten: [
-    { name: "Currywurst", menge: 1 },
+    { name: "Currywurst", menge: 1, canToggle: false },
     { name: "Pita", menge: 1 },
   ],
   preis: 4.5,
@@ -50,7 +50,7 @@ export const Nr4: Speise = {
 export const Nr5: Speise = {
   nr: 5,
   name: "Pommes",
-  zutaten: [{ name: "Pommes", menge: 1 }],
+  zutaten: [{ name: "Pommes", menge: 1, canToggle: false }],
   preis: 3.0,
   sauce: [
     { name: "Mayo", menge: 0, preis: 0.6 },
@@ -62,8 +62,8 @@ export const Nr6: Speise = {
     nr: 6,
     name: "Manta-Platte",
     zutaten: [
-        { name: "Pommes", menge: 1 },
-        { name: "Currywurst", menge: 1 }
+        { name: "Pommes", menge: 1, canToggle: false },
+        { name: "Currywurst", menge: 1, canToggle: false }
     ],
     preis: 8.0,
     sauce: [

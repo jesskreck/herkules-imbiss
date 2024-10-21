@@ -1,7 +1,7 @@
 <script lang="ts">
   import { BestellTyp, BestellTypen, type Bestellung, type SpeiseBestellt } from "$lib/types";
   import { bestellungStore } from "../stores/Bestellung";
-  import ButtonToggler from "./utils/ButtonToggler.svelte";
+  import ButtonToggler from "./utils/TogglerTextButton.svelte";
   import BestelluebersichtSpeise from "./BestelluebersichtSpeise.svelte";
   import { openCheckout } from "../stores/Checkout";
 

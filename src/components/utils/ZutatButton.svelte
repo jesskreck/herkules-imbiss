@@ -5,10 +5,13 @@
 
   export let zutat: Zutat;
   export let disabled: boolean = false;
+  export let canToggle: boolean = true;
 
   const dispatch = createEventDispatcher();
 
   function toggleMenge() {
+    if (!canToggle) return;
+
     let aufpreis = 0;
     zutat.menge = zutat.menge === 0 ? 1 : 0;
 

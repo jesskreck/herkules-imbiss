@@ -10,8 +10,8 @@ export const Nr23: Speise = {
     nr: 23,
     name: "Gyros-Manta-Platte",
     zutaten: [
-        {name: "Gyros", menge: 1},
-        {name: "Currywurst", menge: 1},
+        {name: "Gyros", menge: 1, canToggle: false},
+        {name: "Currywurst", menge: 1, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -29,7 +29,7 @@ export const Nr24: Speise = {
     nr: 24,
     name: "Suflaki-Platte",
     zutaten: [
-        {name: "Suflaki", menge: 2},
+        {name: "Suflaki", menge: 2, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -42,7 +42,7 @@ export const Nr25: Speise = {
     nr: 25,
     name: "Hähnchenbrust-Platte",
     zutaten: [
-        {name: "Hähnchen", menge: 2},
+        {name: "Hähnchen", menge: 2, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -55,7 +55,7 @@ export const Nr26: Speise = {
     nr: 26,
     name: "Herkulessteak-Platte",
     zutaten: [
-        {name: "Steak", menge: 2},
+        {name: "Steak", menge: 2, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -68,7 +68,7 @@ export const Nr27: Speise = {
     nr: 27,
     name: "Bifteki-Platte",
     zutaten: [
-        {name: "Bifteki", menge: 2},
+        {name: "Bifteki", menge: 2, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -81,7 +81,7 @@ export const Nr28: Speise = {
     nr: 28,
     name: "Leichte Grillplatte",
     zutaten: [
-        {name: "Gyros", menge: 1},
+        {name: "Gyros", menge: 1, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -98,7 +98,7 @@ export const Nr29: Speise = {
     nr: 29,
     name: "Grillkäse-Platte",
     zutaten: [
-        {name: "Grillkäse", menge: 1},
+        {name: "Grillkäse", menge: 1, canToggle: false},
         {name: "Feta mit Salat", menge: 1},
         {name: "Pita", menge: 1},
         {name: "Kraut", menge: 1}
@@ -111,7 +111,7 @@ export const Nr30: Speise = {
     nr: 30,
     name: "Bifteki-Feta-Platte",
     zutaten: [
-        {name: "Bifteki", menge: 2, überbacken: true},
+        {name: "Bifteki", menge: 2, überbacken: true, canToggle: false},
         {name: "Pommes", menge: 1},
         {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
@@ -124,7 +124,7 @@ export const Nr31: Speise = {
     nr: 31,
     name: "Herkules-Platte",
     zutaten: [
-        {name: "Gyros", menge: 1},
+        {name: "Gyros", menge: 1, canToggle: false},
         {name: "Bifteki", menge: 1},
         {name: "Steak", menge: 1},
         {name: "Pommes", menge: 1},

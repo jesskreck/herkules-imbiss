@@ -1,6 +1,5 @@
 import { writable } from "svelte/store";
 import type { Bestellung, Speise, SpeiseBestellt } from "$lib/types";
-import { closeModal } from "./Editor";
 
 export const bestellungStore = writable<Bestellung>({
   nr: 0,
@@ -19,7 +18,6 @@ export function addSpeiseToBestellung(speiseToAdd: SpeiseBestellt) {
       gesamtpreis: bestellung.gesamtpreis + speiseToAdd.gesamtpreis,
     };
   });
-  closeModal();
 }
 
 export function updateSpeiseInBestellung(updatedSpeise: SpeiseBestellt) {
@@ -38,6 +36,56 @@ export function updateSpeiseInBestellung(updatedSpeise: SpeiseBestellt) {
       gesamtpreis: neuerGesamtpreis,
     };
   });
+}
+
+export function saveChanges(
+  speise: Speise | SpeiseBestellt,
+  speiseToEdit: Speise,
+  menge: number,
+  gesamtpreis: number,
+  notiz: string,
+  saucenAuswahl: string,
+  size: string,
+  aufpreis: number,
+) {
+  // Sauce handling for single sauce option
+  if (speiseToEdit.sauce && speiseToEdit.singleSauceOnly) {
+    speiseToEdit.sauce = speiseToEdit.sauce.map((sauce) => ({
+      ...sauce,
+      menge: sauce.name === saucenAuswahl ? 1 : 0,
+    }));
+  }
+
+  const hasID = "id" in speise;
+
+  if (hasID) {
+    // Update existing SpeiseBestellt
+    const updatedSpeise: SpeiseBestellt = {
+      ...(speise as SpeiseBestellt),
+      speise: speiseToEdit,
+      menge,
+      gesamtpreis,
+      notiz,
+      size,
+      aufpreis
+    };
+    updateSpeiseInBestellung(updatedSpeise);
+    console.log(updatedSpeise);
+
+  } else {
+    // Add new SpeiseBestellt
+    const newSpeise: SpeiseBestellt = {
+      id: Math.floor(Math.random() * 1000000), // Example ID generation
+      speise: speiseToEdit,
+      menge,
+      gesamtpreis,
+      notiz,
+      size,
+      aufpreis
+    };
+    addSpeiseToBestellung(newSpeise);
+    console.log(newSpeise);
+  }
 }
 
 export function removeSpeiseFromBestellung(speiseToRemove: SpeiseBestellt) {
@@ -71,3 +119,4 @@ export function setAbholzeit(time: string) {
     }
   })
 }
+

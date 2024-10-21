@@ -4,18 +4,22 @@
 
   export let speiseBestellt: SpeiseBestellt;
   let id = speiseBestellt.id;
+  let zutatenliste: string[] = [];
+
 
   $: zutatenliste =
     speiseBestellt.id === id
       ? getZutatenliste(speiseBestellt.speise)
       : zutatenliste;
 
-  function getZutatenliste(speise: Speise) {
-    let zutaten = [...speise.zutaten, ...(speise.sauce || [])];
+
+  function getZutatenliste(speise: Speise): string[] {
+    let zutaten = [...speise.zutaten, ...(speise.option || []), ...(speise.sauce || [])];
     return zutaten
       .filter((zutat) => zutat.menge === 1)
       .map((zutat) => zutat.name);
   }
+
 </script>
 
 <button
@@ -44,12 +48,3 @@
     </p>
   {/if}
 </button>
-
-<!-- ALTE VARIANTE DELETE BTN, TOGGLER MENGE, PREIS -->
-<!-- <div class="bestellung-list-item-buttons">
-          <button class="btn-delete">
-            <Delete />
-          </button>
-          <Counter count={speiseBestellt.menge} />
-          <h3>{speiseBestellt.gesamtpreis.toFixed(2)}€</h3>
-        </div> -->

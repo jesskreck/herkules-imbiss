@@ -9,15 +9,14 @@
   const dispatch = createEventDispatcher();
 
   function handleToggle() {
-    auswahl = option.name;
-    let aufpreis = 0;
-    option.menge = option.menge === 0 ? 1 : 0;
+    if (option.name === auswahl) return;
+    else auswahl = option.name;
+    let aufpreis;
+    option.menge = 1;
 
-    if (option.menge === 1 && option.preis) {
+    if (option.preis) {
       aufpreis = option.preis;
-    } else if (option.menge === 0 && option.preis) {
-      aufpreis = -option.preis;
-    }
+    } else aufpreis = 0;
 
     dispatch("mengeChanged", { option, aufpreis });
   }

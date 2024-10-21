@@ -17,3 +17,4 @@ export function openModal(speise: Speise | SpeiseBestellt) {
 export function closeModal() {
   editorStore.set({ showEditor: false, selectedSpeise: null });
 }
+

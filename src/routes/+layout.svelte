@@ -1,10 +1,8 @@
 <!-- Layout erst wieder aktivieren wenn Navigationsleiste links benötigt wird -->
 <script lang="ts">
-    import "../app.scss";  
+  import "../app.scss";
+</script>
 
-  </script>
-  
-  <div class="main">
-    <slot></slot>
-  </div>
-  
+<div class="main">
+  <slot></slot>
+</div>

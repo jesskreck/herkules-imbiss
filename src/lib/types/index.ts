@@ -57,6 +57,7 @@ export interface Zutat {
   menge: number;
   überbacken?: boolean;
   preis?: number;
+  canToggle?: boolean;
 }
 
 export interface Speise {
@@ -74,6 +75,7 @@ export interface SpeiseBestellt {
   speise: Speise;
   menge: number;
   gesamtpreis: number;
+  aufpreis?: number;
   size?: string;
   notiz?: string;
 }

@@ -11,8 +11,8 @@ export const Nr33: Speise = {
     nr: 33,
     name: "Gyros Pita (überbacken)",
     zutaten: [
-        { name: "Gyros", menge: 1, überbacken: true },
-        { name: "Pita", menge: 1, überbacken: true },
+        { name: "Gyros", menge: 1, überbacken: true, canToggle: false },
+        { name: "Pita", menge: 1, überbacken: true, canToggle: false },
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 9.5,
@@ -24,8 +24,8 @@ export const Nr34: Speise = {
     nr: 34,
     name: "Gyros Box (überbacken)",
     zutaten: [
-        { name: "Gyros", menge: 1, überbacken: true },
-        { name: "Pommes", menge: 1, überbacken: true },
+        { name: "Gyros", menge: 1, überbacken: true, canToggle: false },
+        { name: "Pommes", menge: 1, überbacken: true, canToggle: false },
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 9.5,
@@ -37,7 +37,7 @@ export const Nr35: Speise = {
     nr: 35,
     name: "Hähnchen (überbacken)",
     zutaten: [
-        { name: "Hähnchen", menge: 1, überbacken: true },
+        { name: "Hähnchen", menge: 1, überbacken: true, canToggle: false },
         { name: "Zwiebeln", menge: 1}
     ],
     preis: 10.0,
