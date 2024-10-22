@@ -14,10 +14,11 @@
 
 
   function getZutatenliste(speise: Speise): string[] {
+    console.log(speise);
     let zutaten = [...speise.zutaten, ...(speise.option || []), ...(speise.sauce || [])];
     return zutaten
-      .filter((zutat) => zutat.menge === 1)
-      .map((zutat) => zutat.name);
+      .filter((zutat) => zutat.menge >= 1)
+      .map((zutat) => zutat.menge >= 2 ? `${zutat.menge}x ${zutat.name}` : zutat.name);
   }
 
 </script>

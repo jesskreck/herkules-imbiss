@@ -120,3 +120,20 @@ export function setAbholzeit(time: string) {
   })
 }
 
+
+export function setTelefon(telefon: string) {
+  bestellungStore.update((bestellung) => {
+    return {
+      ...bestellung,
+      telefon: telefon, 
+    };
+  });
+}
+
+
+export function updateField<T extends keyof Bestellung>(field: T, value: Bestellung[T]) {
+  bestellungStore.update((bestellung) => ({
+    ...bestellung,
+    [field]: value,
+  }));
+}

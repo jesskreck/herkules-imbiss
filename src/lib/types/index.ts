@@ -87,8 +87,11 @@ export interface Bestellung {
   eingangszeit: Date;
   abholzeit: Date;
   liefern?: boolean;
+  name?: string;
   telefon?: string;
-  adresse?: string;
+  strasse?: string;
+  hausnummer?: string;
+  liefernotiz?: string;
 }
 
 export interface ButtonGroupContext {

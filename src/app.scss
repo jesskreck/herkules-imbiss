@@ -189,6 +189,8 @@ h6 {
           grid-area: notiz;
           text-align: left;
           color: $secondary;
+          @extend %font-sm;
+
         }
       }
     }

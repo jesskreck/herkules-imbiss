@@ -3,12 +3,21 @@
   import Timer from "./utils/Timer.svelte";
   import Fuse from "fuse.js";
   import streets from "$lib/data/streets_joined.json";
+  import { bestellungStore, updateField } from '../stores/Bestellung';
 
-  let name: string;
-  let telefon: string;
-  let adresse: string = "";
-  let hausnummer: string;
-  let notiz: string;
+  let name: string | undefined;
+  let telefon: string | undefined;
+  let strasse: string | undefined;
+  let hausnummer: string | undefined;
+  let liefernotiz: string | undefined;
+
+  bestellungStore.subscribe((b) => (
+    name = b.name,
+    telefon = b.telefon,
+    strasse = b.strasse,
+    hausnummer = b.hausnummer,
+    liefernotiz = b.liefernotiz
+  ))
 
   let list = streets.map((street) => ({
     name: street.name,
@@ -24,12 +33,18 @@
   let fuse = new Fuse(list, options);
   let searchResults: {name: string, postalCode: string, fullDisplay: string}[] = [];
 
-  function handleInput(event) {
-    adresse = event.target.value;
-    if (adresse) {
+
+  function handleInput(event: Event, field: keyof Bestellung) {
+    const input = event.target as HTMLInputElement;
+    updateField(field, input.value); // Generische Funktion zum Aktualisieren im Store
+  }
+
+  function handleStrasseInput(event) {
+    strasse = event.target.value;
+    if (strasse) {
       // Führe die Suche aus und beschränke auf die ersten 5 Treffer
       searchResults = fuse
-        .search(adresse)
+        .search(strasse)
         .map((result) => result.item)
         .slice(0, 5);
     } else {
@@ -39,8 +54,9 @@
   }
 
   async function selectAddress(choice) {
-    adresse = choice.fullDisplay;
+    strasse = choice.fullDisplay;
     await tick();
+    updateField("strasse", strasse); 
     searchResults = [];
   }
 
@@ -50,9 +66,9 @@
   <div class="gridbox">
     <h3>Straße</h3>
     <input
-      bind:value={adresse}
+      bind:value={strasse}
       placeholder="Straße...|"
-      on:input={handleInput}
+      on:input={handleStrasseInput} 
     />
 
     {#if searchResults.length > 0}
@@ -67,19 +83,19 @@
   </div>
   <div class="gridbox">
     <h3>Nr.</h3>
-    <input bind:value={hausnummer} placeholder="Hausnummer...|" />
+    <input bind:value={hausnummer} placeholder="Hausnummer...|" on:input={(event) => handleInput(event, 'hausnummer')} />
   </div>
   <div class="gridbox">
     <h3>Name an der Klingel</h3>
-    <input bind:value={name} placeholder="Name...|" />
+    <input bind:value={name} placeholder="Name...|" on:input={(event) => handleInput(event, 'name')} />
   </div>
   <div class="gridbox">
     <h3>Telefon</h3>
-    <input bind:value={telefon} placeholder="Telefonnummer...|" />
+    <input bind:value={telefon} placeholder="Telefonnummer...|" on:input={(event) => handleInput(event, 'telefon')} />
   </div>
   <div class="gridbox">
     <h3>Notiz</h3>
-    <input bind:value={notiz} placeholder="Notiz...|" />
+    <input bind:value={liefernotiz} placeholder="Lieferhinweis...|" on:input={(event) => handleInput(event, 'liefernotiz')} />
   </div>
   <div class="gridbox">
     <h3 class="checkout-lieferung-zeit">Abholzeit</h3>
