@@ -11,7 +11,7 @@
   import SpeiseCard from "../components/utils/SpeiseCard.svelte";
   import Bestelluebersicht from "../components/Bestelluebersicht.svelte";
   import Editor from "../components/Editor.svelte";
-  import logo from "$lib/assets/webp/herkules_icon_bunt.webp";
+  import logo from "../../static/assets/webp/herkules_icon_bunt.webp";
 
   import { onMount } from "svelte";
   import { Getraenke } from "$lib/data/getraenke";
