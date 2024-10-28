@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Bestellung } from "$lib/types";
+  import { onMount } from "svelte";
   import { bestellungStore, setTelefon } from "../stores/Bestellung";
   import Timer from "./utils/Timer.svelte";
 
@@ -12,6 +12,7 @@
     telefon = input.value;
     setTelefon(telefon); // Telefonnummer im Store aktualisieren
   }
+
 </script>
 
 <div class="checkout checkout-abholung">

@@ -43,9 +43,9 @@ $gradient: linear-gradient(180deg, #4dc2f0 0%, #f61067 100%);
 
 /*-----Typography-----*/
 
-$font-size-sm: 0.7rem;
-$font-size-basis: 0.8rem;
-$font-size-lg: 1.1rem;
+$font-size-sm: 0.8rem;
+$font-size-basis: 0.9rem;
+$font-size-lg: 1.2rem;
 $font-size-xl: 2.2rem;
 
 $line-height: 1.5;
@@ -58,14 +58,17 @@ $bigger-text: 120%;
 
 %font-sm {
   @include font-size($font-size-sm);
+  // color: lightgreen;
 }
 
 %font-reg {
   @include font-size($font-size-basis);
+  // color: orange;
 }
 
 %font-lg {
   @include font-size($font-size-lg);
+  // color: blue;
 }
 
 p {

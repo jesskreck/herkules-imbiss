@@ -42,6 +42,9 @@
     case "Oliven":
       imagePath = fetaImage;
       break;
+    case "Feta mit Salat":
+      imagePath = fetaImage;
+      break;
     case "Grillkäse":
       imagePath = grillkaeseImage;
       break;

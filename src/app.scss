@@ -327,7 +327,7 @@ button {
 .container-card-speise {
   display: grid;
   gap: $sm-space $reg-space;
-  grid-template-columns: repeat(auto-fit, 17rem);
+  grid-template-columns: repeat(auto-fit, 16rem);
   margin-bottom: $reg-space;
 }
 
@@ -383,6 +383,28 @@ button {
     }
   }
 
+  @each $zutat in $sonstiges {
+    &.#{$zutat} {
+      background-color: $grey;
+      border-color: $grey;
+      &.untoggled {
+        border-color: transparentize($grey, $amount: 0.8);
+        color: transparentize($grey, $amount: 0.8);
+      }
+    }
+  }
+
+  @each $zutat in $gegrillt {
+    &.#{$zutat} {
+      background-color: $lila;
+      border-color: $lila;
+      &.untoggled {
+        border-color: transparentize($lila, $amount: 0.8);
+        color: transparentize($lila, $amount: 0.8);
+      }
+    }
+  }
+
   &.Gyros {
     background-color: $blue;
     border-color: $blue;
@@ -407,28 +429,6 @@ button {
     &.untoggled {
       border-color: transparentize($green, $amount: 0.8);
       color: transparentize($green, $amount: 0.8);
-    }
-  }
-
-  @each $zutat in $sonstiges {
-    &.#{$zutat} {
-      background-color: $grey;
-      border-color: $grey;
-      &.untoggled {
-        border-color: transparentize($grey, $amount: 0.8);
-        color: transparentize($grey, $amount: 0.8);
-      }
-    }
-  }
-
-  @each $zutat in $gegrillt {
-    &.#{$zutat} {
-      background-color: $lila;
-      border-color: $lila;
-      &.untoggled {
-        border-color: transparentize($lila, $amount: 0.8);
-        color: transparentize($lila, $amount: 0.8);
-      }
     }
   }
 }
