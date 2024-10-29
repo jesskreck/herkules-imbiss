@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { BestellTyp, BestellTypen, type Bestellung, type SpeiseBestellt } from "$lib/types";
+  import { BestellTyp, BestellTypen, type Bestellung } from "$lib/types";
   import { bestellungStore } from "../stores/Bestellung";
+  import { openCheckout } from "../stores/Checkout";
   import ButtonToggler from "./utils/TogglerTextButton.svelte";
   import BestelluebersichtSpeise from "./BestelluebersichtSpeise.svelte";
-  import { openCheckout } from "../stores/Checkout";
 
   //Toggler Bestelloptionen
   let auswahl: BestellTyp = BestellTyp.a;
@@ -14,14 +14,11 @@
     bestellung = b;
   });
 
-
   //Lieferung
   let liefergebühr = 2.5;
   let liefern = false;
   $: liefern = auswahl === BestellTyp.c;
   $: gesamtpreisTemp = bestellung.gesamtpreis + (liefern ? +liefergebühr : 0);
-
-
 </script>
 
 <div class="menu_bestellung-header">
@@ -52,9 +49,7 @@
     <h2>{gesamtpreisTemp.toFixed(2)}€</h2>
   </div>
   <div class="flex">
-    <button class="btn-primary stretch" 
-    on:click={() => openCheckout(auswahl)}
-    
+    <button class="btn-primary stretch" on:click={() => openCheckout(auswahl)}
       ><h3>Bestellung aufnehmen</h3></button
     >
   </div>

@@ -4,6 +4,7 @@
   import Fuse from "fuse.js";
   import streets from "$lib/data/streets_joined.json";
   import { bestellungStore, updateField } from "../stores/Bestellung";
+  import type { Bestellung } from "$lib/types";
 
   let name: string | undefined;
   let telefon: string | undefined;
@@ -18,7 +19,7 @@
       (strasse = b.strasse),
       (hausnummer = b.hausnummer),
       (liefernotiz = b.liefernotiz)
-    ),
+    )
   );
 
   let list = streets.map((street) => ({
@@ -32,6 +33,15 @@
     keys: ["name", "postalCode"],
   };
 
+  
+  // aktualisiert alle Felder im BestellungStore mit generische Funktion
+  function handleInput(event: Event, field: keyof Bestellung) {
+    const input = event.target as HTMLInputElement;
+    updateField(field, input.value);
+  }
+
+  // FUSE FUZZY SEARCH für Straßenindex im Lieferradius
+  //// Initialwerte für Fuzzy Search von fuse.js Library
   let fuse = new Fuse(list, options);
   let searchResults: {
     name: string;
@@ -39,12 +49,7 @@
     fullDisplay: string;
   }[] = [];
 
-  function handleInput(event: Event, field: keyof Bestellung) {
-    const input = event.target as HTMLInputElement;
-    updateField(field, input.value); // Generische Funktion zum Aktualisieren im Store
-  }
-
-  function handleStrasseInput(event) {
+  function handleStrasseInput(event: any) {
     strasse = event.target.value;
     if (strasse) {
       // Führe die Suche aus und beschränke auf die ersten 5 Treffer
@@ -58,7 +63,7 @@
     }
   }
 
-  async function selectAddress(choice) {
+  async function selectAddress(choice: any) {
     strasse = choice.fullDisplay;
     await tick();
     updateField("strasse", strasse);

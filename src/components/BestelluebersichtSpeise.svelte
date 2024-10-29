@@ -14,7 +14,6 @@
 
 
   function getZutatenliste(speise: Speise): string[] {
-    console.log(speise);
     let zutaten = [...speise.zutaten, ...(speise.option || []), ...(speise.sauce || [])];
     return zutaten
       .filter((zutat) => zutat.menge >= 1)

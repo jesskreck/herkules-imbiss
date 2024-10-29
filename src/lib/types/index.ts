@@ -87,6 +87,7 @@ export interface Bestellung {
   eingangszeit: Date;
   abholzeit: Date;
   liefern?: boolean;
+  liefergebuehr?: number;
   name?: string;
   telefon?: string;
   strasse?: string;

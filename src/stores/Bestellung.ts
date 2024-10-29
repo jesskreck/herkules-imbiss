@@ -70,7 +70,6 @@ export function saveChanges(
       aufpreis
     };
     updateSpeiseInBestellung(updatedSpeise);
-    console.log(updatedSpeise);
 
   } else {
     // Add new SpeiseBestellt
@@ -84,7 +83,6 @@ export function saveChanges(
       aufpreis
     };
     addSpeiseToBestellung(newSpeise);
-    console.log(newSpeise);
   }
 }
 
@@ -107,6 +105,13 @@ export function removeSpeiseFromBestellung(speiseToRemove: SpeiseBestellt) {
   })
 }
 
+export function updateField<T extends keyof Bestellung>(field: T, value: Bestellung[T]) {
+  bestellungStore.update((bestellung) => ({
+    ...bestellung,
+    [field]: value,
+  }));
+}
+
 export function setAbholzeit(time: string) {
   bestellungStore.update((bestellung) => {
     const [hours, minutes] = time.split(":").map(Number);
@@ -120,20 +125,3 @@ export function setAbholzeit(time: string) {
   })
 }
 
-
-export function setTelefon(telefon: string) {
-  bestellungStore.update((bestellung) => {
-    return {
-      ...bestellung,
-      telefon: telefon, 
-    };
-  });
-}
-
-
-export function updateField<T extends keyof Bestellung>(field: T, value: Bestellung[T]) {
-  bestellungStore.update((bestellung) => ({
-    ...bestellung,
-    [field]: value,
-  }));
-}

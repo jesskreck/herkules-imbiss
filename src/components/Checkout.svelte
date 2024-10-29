@@ -14,16 +14,17 @@
   let liefern: boolean;
   let liefergebühr = 2.5;
 
-  let focus: HTMLElement
-  // Automatische Reaktivität für den showModal Zustand aus dem Store
+  // setzt Fokus auf gewähltes HTML Element da Inputfield sonst Autofocus bekommt was Keyboard auf Touchdisplay automatisch einblendet
+  let focus: HTMLElement;
+  onMount(() => {
+    focus.focus();
+  });
+
   $: ({ showCheckout, auswahl } = $checkoutStore);
   bestellungStore.subscribe((b) => {
     bestellung = b;
-    console.log(bestellung);
   });
 
-
-  // Setze das Modal automatisch in den offenen Zustand, wenn showModal true ist
   $: if (dialog && showCheckout) {
     dialog.showModal();
   }
@@ -42,11 +43,7 @@
     }
   }
 
-  onMount(()=>{
-    focus.focus()
-  })
-
-  // Bestellnummer vom lokalen Server abrufen (einmal beim Laden der Komponente)
+  // ruft beim Laden der Komponente Bestellnummer vom lokalen Druckerserver ab (Konfiguration in imbiss-app-printer > orderCounter.js)
   onMount(async () => {
     const response = await fetch("http://localhost:3001/order-number");
     const data = await response.json();
@@ -64,6 +61,11 @@
       // Speicher Bestellnummer in Store
       bestellungStore.update((b) => {
         b.nr = orderNrLocalServer;
+        if (auswahl === BestellTyp.c) {
+          b.gesamtpreis += liefergebühr;
+          b.liefergebuehr = liefergebühr;
+        }
+        console.log("Bestellung für Druck:", b);
         return b;
       });
 
@@ -83,8 +85,8 @@
       if (result.success) {
         console.log("Druck erfolgreich!");
 
-         // Reset des Bestellung-Stores nach dem erfolgreichen Druck
-         bestellungStore.set({
+        // Reset des Bestellung-Stores nach dem erfolgreichen Druck
+        bestellungStore.set({
           nr: 0,
           speisen: [],
           gesamtpreis: 0,
@@ -92,7 +94,6 @@
           abholzeit: new Date(),
         });
         closeCheckout();
-
       } else {
         console.error("Druck fehlgeschlagen:", result.error);
       }

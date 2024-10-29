@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { bestellungStore, setTelefon } from "../stores/Bestellung";
+  import { bestellungStore, updateField } from "../stores/Bestellung";
   import Timer from "./utils/Timer.svelte";
 
   let telefon: string | undefined;
@@ -10,7 +10,7 @@
   function handleTelefonInput(event: Event) {
     const input = event.target as HTMLInputElement;
     telefon = input.value;
-    setTelefon(telefon); // Telefonnummer im Store aktualisieren
+    updateField("telefon", telefon); // Telefonnummer im Store aktualisieren
   }
 
 </script>
