@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { bestellungStore, updateField } from "../stores/Bestellung";
   import Timer from "./utils/Timer.svelte";
 

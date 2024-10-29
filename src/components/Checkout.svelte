@@ -13,6 +13,7 @@
   let modal: any;
   let liefern: boolean;
   let liefergebühr = 2.5;
+  let gesamtpreisTemp: number;
 
   // setzt Fokus auf gewähltes HTML Element da Inputfield sonst Autofocus bekommt was Keyboard auf Touchdisplay automatisch einblendet
   let focus: HTMLElement;
@@ -20,10 +21,15 @@
     focus.focus();
   });
 
-  $: ({ showCheckout, auswahl } = $checkoutStore);
   bestellungStore.subscribe((b) => {
     bestellung = b;
+    gesamtpreisTemp = bestellung.gesamtpreis
   });
+
+
+  $: ({ showCheckout, auswahl } = $checkoutStore);
+
+  $: console.log("bestellung store", bestellung);
 
   $: if (dialog && showCheckout) {
     dialog.showModal();
@@ -36,12 +42,18 @@
         break;
       case auswahl === BestellTyp.c:
         liefern = true;
+        updateGesamptpreis();
         modal = CheckoutLieferung;
         break;
       default:
         modal = null;
     }
   }
+
+  function updateGesamptpreis() {
+    gesamtpreisTemp = bestellung.gesamtpreis + (liefern ? +liefergebühr : 0);
+  }
+
 
   // ruft beim Laden der Komponente Bestellnummer vom lokalen Druckerserver ab (Konfiguration in imbiss-app-printer > orderCounter.js)
   onMount(async () => {
@@ -61,8 +73,8 @@
       // Speicher Bestellnummer in Store
       bestellungStore.update((b) => {
         b.nr = orderNrLocalServer;
+        b.gesamtpreis = gesamtpreisTemp;
         if (auswahl === BestellTyp.c) {
-          b.gesamtpreis += liefergebühr;
           b.liefergebuehr = liefergebühr;
         }
         console.log("Bestellung für Druck:", b);
@@ -131,7 +143,7 @@
     {/if}
     <div class="menu_bestellung-preis">
       <p>Gesamtpreis:</p>
-      <h2>{bestellung.gesamtpreis.toFixed(2)}€</h2>
+      <h2>{gesamtpreisTemp.toFixed(2)}€</h2>
     </div>
     {#if modal}
       <svelte:component this={modal} />
