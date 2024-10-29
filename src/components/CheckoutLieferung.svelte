@@ -18,7 +18,7 @@
       (strasse = b.strasse),
       (hausnummer = b.hausnummer),
       (liefernotiz = b.liefernotiz)
-    )
+    ),
   );
 
   let list = streets.map((street) => ({
@@ -91,7 +91,6 @@
   <div class="gridbox">
     <h3>Nr.</h3>
     <input
-      
       bind:value={hausnummer}
       placeholder="Hausnummer...|"
       on:input={(event) => handleInput(event, "hausnummer")}
@@ -100,8 +99,7 @@
   <div class="gridbox">
     <h3>Name an der Klingel</h3>
     <input
-    tabindex="-1"
-
+      tabindex="-1"
       bind:value={name}
       placeholder="Name...|"
       on:input={(event) => handleInput(event, "name")}
@@ -110,8 +108,7 @@
   <div class="gridbox">
     <h3>Telefon</h3>
     <input
-    tabindex="-1"
-
+      tabindex="-1"
       bind:value={telefon}
       placeholder="Telefonnummer...|"
       on:input={(event) => handleInput(event, "telefon")}

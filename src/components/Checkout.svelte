@@ -14,6 +14,7 @@
   let liefern: boolean;
   let liefergebühr = 2.5;
 
+  let focus: HTMLElement
   // Automatische Reaktivität für den showModal Zustand aus dem Store
   $: ({ showCheckout, auswahl } = $checkoutStore);
   bestellungStore.subscribe((b) => {
@@ -40,6 +41,10 @@
         modal = null;
     }
   }
+
+  onMount(()=>{
+    focus.focus()
+  })
 
   // Bestellnummer vom lokalen Server abrufen (einmal beim Laden der Komponente)
   onMount(async () => {
@@ -132,7 +137,7 @@
     {/if}
     <div>
       <div class="flex">
-        <button on:click={print} class="btn-primary"
+        <button bind:this={focus} on:click={print} class="btn-primary"
           ><h3>als <u>{auswahl}</u> drucken</h3></button
         >
       </div>
