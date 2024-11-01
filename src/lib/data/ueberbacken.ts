@@ -57,4 +57,17 @@ export const Nr36: Speise = {
     singleSauceOnly: true
 };
 
-export const Ueberbacken = [Nr33, Nr34, Nr35, Nr36] 
+export const keineNummer: Speise = {
+    nr: 37,
+    name: "Pommes (überbacken)",
+    zutaten: [
+        { name: "Pommes", menge: 1, überbacken: true },
+        { name: "Zwiebeln", menge: 1}
+    ],
+    preis: 6.0,
+    sauce: ÜberbackenSaucen,
+    singleSauceOnly: true
+};
+
+
+export const Ueberbacken = [Nr33, Nr34, Nr35, Nr36, keineNummer] 

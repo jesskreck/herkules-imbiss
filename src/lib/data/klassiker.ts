@@ -22,6 +22,7 @@ export const Nr2: Speise = {
   sauce: [
     { name: "Cocktail", menge: 1 },
     { name: "Tzaziki", menge: 0 },
+    { name: "ohne", menge: 0 },
   ],
   singleSauceOnly: true
 };

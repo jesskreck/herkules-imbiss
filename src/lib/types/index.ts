@@ -17,6 +17,7 @@ export const BestellTypen = Object.values(BestellTyp)
 export const SizeValues = Object.values(Size)
 
 export type ZutatT =
+| "ohne"
   | "Gyros"
   | "Pommes"
   | "Tzaziki"
@@ -42,14 +43,17 @@ export type ZutatT =
   | "Feta"
   | "Oliven"
   | "Salat"
-  | "Essig Öl"
-  | "French Dressing"
   | "Cola"
   | "Fanta"
   | "Sprite"
   | "Schorle"
   | "Multi"
   | "Wasser"
+  | "Joghurt"
+  | "Cocktail"
+  | "Essig Öl"
+  | "Granatapfel"
+  
 
 
 export interface Zutat {

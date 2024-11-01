@@ -21,6 +21,7 @@
     <input
       bind:value={telefon}
       on:input={handleTelefonInput}
+      type="tel"
       placeholder="Nummer...|"
     />
   </div>

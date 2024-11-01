@@ -327,7 +327,7 @@ button {
 .container-card-speise {
   display: grid;
   gap: $sm-space $reg-space;
-  grid-template-columns: repeat(auto-fit, 16rem);
+  grid-template-columns: repeat(auto-fit, 20.5rem);
   margin-bottom: $reg-space;
 }
 
@@ -437,7 +437,7 @@ button {
   margin: $sm-space $xs-space;
 
   &-container {
-    margin-bottom: $sm-space;
+    margin-bottom: $reg-space;
   }
 
   .container-toggler {
@@ -461,6 +461,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: $sm-space;
+    justify-content: space-between;
 
     .btn-zutat {
       @extend %btn-zutat-xs;
@@ -646,17 +647,32 @@ dialog {
 
 /*-----Scrollbar-----*/
 
-#style-2::-webkit-scrollbar-track {
+#menu-bestellung-list::-webkit-scrollbar-track {
+  background: white;
+}
+
+#menu-bestellung-list::-webkit-scrollbar {
+  width: 3px;
+}
+
+#menu-bestellung-list::-webkit-scrollbar-thumb {
+  border-radius: $border-radius;
+  -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  background: $gradient;
+  // background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+#menu::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 2px $grey;
   border-radius: $border-radius;
   background: $gradient;
 }
 
-#style-2::-webkit-scrollbar {
+#menu::-webkit-scrollbar {
   width: 10px;
 }
 
-#style-2::-webkit-scrollbar-thumb {
+#menu::-webkit-scrollbar-thumb {
   border-radius: $border-radius;
   -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
   background: rgba(white, 0.8);

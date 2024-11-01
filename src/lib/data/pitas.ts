@@ -9,6 +9,7 @@ const PitaBasics: Zutat[] = [
 const PitaSaucen: Zutat[] = [
   { name: "Cocktail", menge: 1 },
   { name: "Tzaziki", menge: 0 },
+  { name: "ohne", menge: 0 },
 ];
 
 

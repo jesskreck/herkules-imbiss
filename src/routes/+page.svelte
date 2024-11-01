@@ -99,7 +99,7 @@
     </div>
   </div>
 
-  <div class="menu_kategorien" id="style-2">
+  <div class="menu_kategorien" id="menu">
     {#each kategorien as kategorie, i}
         <section id={kategorien[i].name}>
           <h2 class="menu_kategorien-heading">{kategorie.name}</h2>

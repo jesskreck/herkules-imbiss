@@ -15,7 +15,7 @@
   });
 
   //Lieferung
-  let liefergebühr = 2.5;
+  let liefergebühr = 3;
   let liefern = false;
   $: liefern = auswahl === BestellTyp.c;
   $: gesamtpreisTemp = bestellung.gesamtpreis + (liefern ? +liefergebühr : 0);
@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<div class="menu_bestellung-list" class:liefern>
+<div class="menu_bestellung-list" id="menu-bestellung-list" class:liefern>
   {#each bestellung.speisen as speiseBestellt (speiseBestellt.id)}
     <BestelluebersichtSpeise {speiseBestellt} />
   {/each}

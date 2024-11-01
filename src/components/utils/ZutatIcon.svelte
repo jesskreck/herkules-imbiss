@@ -18,12 +18,30 @@
   import tzazikiImage from '$lib/assets/webp/zutaten/tzaziki.webp';
   import veggieImage from '$lib/assets/webp/zutaten/veggie.webp';
   import zwiebelImage from '$lib/assets/webp/zutaten/zwiebel.webp';
+  import waterImage from '$lib/assets/webp/zutaten/wasser.webp';
+  import softdrinkImage from '$lib/assets/webp/zutaten/softdrink.webp';
+
 
   export let name: string;
 
   let imagePath: string;
 
   switch (name) {
+    case "Cola":
+      imagePath = softdrinkImage;
+      break;
+      case "Fanta":
+      imagePath = softdrinkImage;
+      break;
+      case "Sprite":
+      imagePath = softdrinkImage;
+      break;
+      case "Schorle":
+      imagePath = softdrinkImage;
+      break;
+      case "Multi":
+      imagePath = softdrinkImage;
+      break;
     case "Bifteki":
       imagePath = biftekiImage;
       break;
@@ -86,6 +104,9 @@
       break;
     case "Veggie":
       imagePath = veggieImage;
+      break;
+      case "Wasser":
+      imagePath = waterImage;
       break;
     case "Zwiebeln":
       imagePath = zwiebelImage;

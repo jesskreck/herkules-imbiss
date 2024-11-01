@@ -13,7 +13,6 @@ export const Nr23: Speise = {
         {name: "Gyros", menge: 1, canToggle: false},
         {name: "Currywurst", menge: 1, canToggle: false},
         {name: "Pommes", menge: 1},
-        {name: "Kraut", menge: 1},
         {name: "Zwiebeln", menge: 1},
 
     ],

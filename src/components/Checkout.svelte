@@ -12,7 +12,7 @@
   let orderNrLocalServer: number;
   let modal: any;
   let liefern: boolean;
-  let liefergebühr = 2.5;
+  let liefergebühr = 3;
   let gesamtpreisTemp: number;
 
   // setzt Fokus auf gewähltes HTML Element da Inputfield sonst Autofocus bekommt was Keyboard auf Touchdisplay automatisch einblendet

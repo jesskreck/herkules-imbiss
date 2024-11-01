@@ -1,6 +1,6 @@
 /*-----Listen-----*/
 $gegrillt: Bifteki, Bratwurst, Currywurst, Grillkäse, Hähnchen, Steak, Suflaki, Veggie;
-$sonstiges: Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf, Feta, Peperoni, Oliven, Salat, Veggie;
+$sonstiges: Cola, Fanta, Sprite, Wasser, Schorle, Multi, Pita, Kraut, Zwiebeln, Tzaziki, Mayo, Ketchup, Senf, Feta, Peperoni, Oliven, Salat, Veggie;
 
 /*-----Colors-----*/
 
@@ -43,10 +43,10 @@ $gradient: linear-gradient(180deg, #4dc2f0 0%, #f61067 100%);
 
 /*-----Typography-----*/
 
-$font-size-sm: 0.8rem;
-$font-size-basis: 0.9rem;
-$font-size-lg: 1.2rem;
-$font-size-xl: 2.2rem;
+$font-size-sm: 1rem;
+$font-size-basis: 1.2rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2.8rem;
 
 $line-height: 1.5;
 $chperline: 70ch;
@@ -58,17 +58,14 @@ $bigger-text: 120%;
 
 %font-sm {
   @include font-size($font-size-sm);
-  // color: lightgreen;
 }
 
 %font-reg {
   @include font-size($font-size-basis);
-  // color: orange;
 }
 
 %font-lg {
   @include font-size($font-size-lg);
-  // color: blue;
 }
 
 p {
@@ -170,6 +167,7 @@ $breakpoints: (
 }
 
 %btn-primary {
+  @extend %font-sm;
   background-color: $secondary;
   border-color: $secondary;
   border-radius: $border-radius-button;
@@ -179,11 +177,13 @@ $breakpoints: (
 
 %btn-zutat-basics {
   @extend %font-reg;
+  justify-content: center;
   font-weight: 500;
-  width: 8rem;
+  width: 10rem;
   box-shadow: $box-shadow-sm;
   color: white;
   margin-right: $sm-space;
+  min-height: 4rem;
 }
 
 %btn-zutat-lg {
@@ -192,7 +192,7 @@ $breakpoints: (
   flex-direction: column;
   align-items: center;
   img {
-    width: 6rem;
+    width: 7rem;
     margin: 0 auto;
   }
 }
@@ -220,12 +220,12 @@ $breakpoints: (
 %btn-zutat-toggler {
   @extend %font-reg;
   font-weight: 500;
-  width: 6.5rem;
+  width: 9.5rem;
   box-shadow: $box-shadow-sm;
   color: white;
   margin-right: $sm-space;
   img {
-    width: 5.5rem;
+    width: 7rem;
     margin: 0 auto;
   }
 

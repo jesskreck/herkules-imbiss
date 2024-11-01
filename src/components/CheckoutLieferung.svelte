@@ -97,6 +97,8 @@
     <h3>Nr.</h3>
     <input
       bind:value={hausnummer}
+      type="text"
+      inputmode="numeric"
       placeholder="Hausnummer...|"
       on:input={(event) => handleInput(event, "hausnummer")}
     />
@@ -115,6 +117,7 @@
     <input
       tabindex="-1"
       bind:value={telefon}
+      type="tel"
       placeholder="Telefonnummer...|"
       on:input={(event) => handleInput(event, "telefon")}
     />
