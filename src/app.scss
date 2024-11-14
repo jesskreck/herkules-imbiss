@@ -134,6 +134,7 @@ h6 {
       margin: $sm-space 0;
       max-height: 67vh;
       overflow-y: scroll;
+      overflow-x: hidden;
       scroll-behavior: smooth;
 
       &.liefern {
@@ -202,6 +203,11 @@ h6 {
 
       h2 {
         margin-bottom: $sm-space;
+      }
+
+      &--discount {
+        display: inline-flex;
+        align-items: baseline;
       }
     }
   }

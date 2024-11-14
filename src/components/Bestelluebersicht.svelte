@@ -4,21 +4,32 @@
   import { openCheckout } from "../stores/Checkout";
   import ButtonToggler from "./utils/TogglerTextButton.svelte";
   import BestelluebersichtSpeise from "./BestelluebersichtSpeise.svelte";
+  import {
+    openModalDiscount,
+    calculatedDiscount,
+    totalPrice,
+  } from "../stores/Discount";
 
   //Toggler Bestelloptionen
   let auswahl: BestellTyp = BestellTyp.a;
 
-  //Store Bestellung
+  //Stores
   let bestellung: Bestellung;
   bestellungStore.subscribe((b) => {
     bestellung = b;
   });
 
+  function handleDiscountClick() {
+    if (bestellung.discount != null) {
+      openModalDiscount(bestellung.discount);
+    }
+  }
+
   //Lieferung
   let liefergebühr = 3;
   let liefern = false;
   $: liefern = auswahl === BestellTyp.c;
-  $: gesamtpreisTemp = bestellung.gesamtpreis + (liefern ? +liefergebühr : 0);
+  $: gesamtpreisLiefern = $totalPrice + (liefern ? +liefergebühr : 0);
 </script>
 
 <div class="menu_bestellung-header">
@@ -35,22 +46,55 @@
   {#each bestellung.speisen as speiseBestellt (speiseBestellt.id)}
     <BestelluebersichtSpeise {speiseBestellt} />
   {/each}
+  {#if bestellung.discount != null}
+    <button
+      on:click={handleDiscountClick}
+      class="menu_bestellung-list-item secondary"
+      ><h2 class="menu_bestellung-list-item-name">Rabatt</h2>
+      <h3 class="menu_bestellung-list-item-preis">{bestellung.discount}%</h3>
+    </button>
+  {/if}
 </div>
 
 <div>
   {#if liefern}
+    {#if bestellung.discount}
+      <div class="menu_bestellung-preis">
+        <p>Rabatt auf Essen:</p>
+        <h3 class="secondary">− {$calculatedDiscount.toFixed(2)}€</h3>
+      </div>
+    {/if}
     <div class="menu_bestellung-preis">
       <p>Liefergebühr:</p>
       <h3>{liefergebühr.toFixed(2)}€</h3>
     </div>
-  {/if}
+    <div class="menu_bestellung-preis">
+      <p>Gesamtpreis:</p>
+      <h2>{gesamtpreisLiefern.toFixed(2)}€</h2>
+    </div>
+
+  {:else if bestellung.discount}
   <div class="menu_bestellung-preis">
-    <p>Gesamtpreis:</p>
-    <h2>{gesamtpreisTemp.toFixed(2)}€</h2>
-  </div>
+      <p>Gesamtpreis:</p>
+      <div class="menu_bestellung-preis--discount">
+        <h3>
+          {bestellung.gesamtpreis.toFixed(2)}€&nbsp;
+        </h3>
+        <h3 class="secondary">− {$calculatedDiscount.toFixed(2)}€ =&nbsp;</h3>
+        <h2>{$totalPrice.toFixed(2)}€</h2>
+      </div>
+    </div>
+
+    {:else}
+    <div class="menu_bestellung-preis">
+      <p>Gesamtpreis:</p>
+      <h2>{$totalPrice.toFixed(2)}€</h2>
+    </div>
+    {/if}
+
   <div class="flex">
     <button class="btn-primary stretch" on:click={() => openCheckout(auswahl)}
-      ><h3>Bestellung aufnehmen</h3></button
+      ><h3>OK?</h3></button
     >
   </div>
 </div>

@@ -90,6 +90,7 @@ export interface Bestellung {
   gesamtpreis: number;
   eingangszeit: Date;
   abholzeit: Date;
+  discount?: number | null;
   liefern?: boolean;
   liefergebuehr?: number;
   name?: string;

@@ -9,14 +9,17 @@
   import { checkoutStore } from "../stores/Checkout";
   import Checkout from "../components/Checkout.svelte";
   import SpeiseCard from "../components/utils/SpeiseCard.svelte";
+  import RabattCard from "../components/utils/RabattCard.svelte";
   import Bestelluebersicht from "../components/Bestelluebersicht.svelte";
   import Editor from "../components/Editor.svelte";
+  import EditorRabatt from "../components/EditorRabatt.svelte";
   import logo from "$lib/assets/webp/herkules_icon_bunt.webp";
 
   import { onMount } from "svelte";
   import { Getraenke } from "$lib/data/getraenke";
+  import { discountStore } from "../stores/Discount";
 
-  // States
+  // Speisekategorien
   let kategorien = [
     { name: "Klassiker", speisen: Klassiker },
     { name: "Pitas", speisen: Pitas },
@@ -24,12 +27,17 @@
     { name: "Grillplatten", speisen: Grillplatten },
     { name: "Überbacken", speisen: Ueberbacken },
     { name: "Salate", speisen: Salate },
-    { name: "Getränke", speisen: Getraenke},
+    { name: "Getränke", speisen: Getraenke }
   ];
+
+  // Rabattdaten
+  let rabatte = [ 10, 20 ];
+
   let kategorieSelected = "Klassiker";
 
   // Reaktive States
   $: ({ showEditor, selectedSpeise } = $editorStore);
+  $: ({ showEditorDiscount, selectedDiscount } = $discountStore);
   $: ({ showCheckout } = $checkoutStore);
 
   // Datumanzeige
@@ -38,7 +46,7 @@
     weekday: "long",
     year: "numeric",
     month: "long",
-    day: "numeric",
+    day: "numeric"
   };
   $: date = time.toLocaleDateString("de-DE", timeformat);
   $: hours = time.getHours().toString().padStart(2, "0");
@@ -55,11 +63,7 @@
     };
   });
 
-  //Functions
-
-  function setKategorie(kategorie: string) {
-    kategorieSelected = kategorie;
-  }
+  // Functions
 
   function jumpToKategorie(kategorie: string) {
     kategorieSelected = kategorie;
@@ -73,6 +77,10 @@
 
 {#if showEditor && selectedSpeise}
   <Editor speise={selectedSpeise}></Editor>
+{/if}
+
+{#if showEditorDiscount && selectedDiscount}
+  <EditorRabatt discount={selectedDiscount}></EditorRabatt>
 {/if}
 
 {#if showCheckout}
@@ -101,15 +109,25 @@
 
   <div class="menu_kategorien" id="menu">
     {#each kategorien as kategorie, i}
-        <section id={kategorien[i].name}>
-          <h2 class="menu_kategorien-heading">{kategorie.name}</h2>
-          <div class="container-card-speise">
-            {#each kategorie.speisen as speise}
-              <SpeiseCard {speise} />
-            {/each}
-          </div>
-        </section>
+      <section id={kategorien[i].name}>
+        <h2 class="menu_kategorien-heading">{kategorie.name}</h2>
+        <div class="container-card-speise">
+          {#each kategorie.speisen as speise}
+            <SpeiseCard {speise} />
+          {/each}
+        </div>
+      </section>
     {/each}
+
+    <!-- Separate Rabatte Section -->
+    <section id="Rabatte">
+      <h2 class="menu_kategorien-heading">Rabatte</h2>
+      <div class="container-card-speise">
+        {#each rabatte as discount}
+          <RabattCard {discount} />
+        {/each}
+      </div>
+    </section>
   </div>
 </div>
 

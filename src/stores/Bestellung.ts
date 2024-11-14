@@ -5,10 +5,10 @@ export const bestellungStore = writable<Bestellung>({
   nr: 0,
   speisen: [],
   gesamtpreis: 0,
+  discount: null,
   eingangszeit: new Date(),
   abholzeit: new Date(),
 });
-
 
 export function addSpeiseToBestellung(speiseToAdd: SpeiseBestellt) {
   bestellungStore.update((bestellung) => {
