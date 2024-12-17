@@ -19,19 +19,19 @@ export function closeModalDiscount() {
 }
 
 export function applyDiscount(percent: number) {
-    bestellungStore.update(bestellung => ({ ...bestellung, discount: percent }))
+    bestellungStore.update(bestellung => ({ ...bestellung, discountRate: percent }))
 }
 
 export function removeDiscount() {
-    bestellungStore.update(bestellung => ({ ...bestellung, discount: null }))
+    bestellungStore.update(bestellung => ({ ...bestellung, discountRate: null }))
 }
 
 export const calculatedDiscount = derived(bestellungStore, $bestellung => {
-    return $bestellung.discount
-        ? $bestellung.gesamtpreis * ($bestellung.discount / 100)
+    return $bestellung.discountRate
+        ? $bestellung.gesamtpreis * ($bestellung.discountRate / 100)
         : 0;
 });
 
-export const totalPrice = derived([bestellungStore, calculatedDiscount], ([$bestellung, $calculatedDiscount]) => {
+export const discountedPrice = derived([bestellungStore, calculatedDiscount], ([$bestellung, $calculatedDiscount]) => {
     return $bestellung.gesamtpreis - $calculatedDiscount;
 });

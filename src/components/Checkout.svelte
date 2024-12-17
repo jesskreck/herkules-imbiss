@@ -6,13 +6,13 @@
   import BestelluebersichtSpeise from "./BestelluebersichtSpeise.svelte";
   import CheckoutAbholung from "./CheckoutAbholung.svelte";
   import CheckoutLieferung from "./CheckoutLieferung.svelte";
+  import Gesamtpreis from "./utils/Gesamtpreis.svelte";
 
   let dialog: HTMLDialogElement; // dialog wird über showCheckout aus checkoutStore auf menu/+page.svelte getriggert
   let bestellung: Bestellung;
   let orderNrLocalServer: number;
   let modal: any;
   let liefern: boolean;
-  let liefergebühr = 3;
   let gesamtpreisTemp: number;
 
   // setzt Fokus auf gewähltes HTML Element da Inputfield sonst Autofocus bekommt was Keyboard auf Touchdisplay automatisch einblendet
@@ -29,7 +29,6 @@
 
   $: ({ showCheckout, auswahl } = $checkoutStore);
 
-  $: console.log("bestellung store", bestellung);
 
   $: if (dialog && showCheckout) {
     dialog.showModal();
@@ -42,18 +41,12 @@
         break;
       case auswahl === BestellTyp.c:
         liefern = true;
-        updateGesamptpreis();
         modal = CheckoutLieferung;
         break;
       default:
         modal = null;
     }
   }
-
-  function updateGesamptpreis() {
-    gesamtpreisTemp = bestellung.gesamtpreis + (liefern ? +liefergebühr : 0);
-  }
-
 
   // ruft beim Laden der Komponente Bestellnummer vom lokalen Druckerserver ab (Konfiguration in imbiss-app-printer > orderCounter.js)
   onMount(async () => {
@@ -70,13 +63,9 @@
   // drucken
   async function print() {
     try {
-      // Speicher Bestellnummer in Store
+      // Speicher Bestellnummer
       bestellungStore.update((b) => {
         b.nr = orderNrLocalServer;
-        b.gesamtpreis = gesamtpreisTemp;
-        if (auswahl === BestellTyp.c) {
-          b.liefergebuehr = liefergebühr;
-        }
         console.log("Bestellung für Druck:", b);
         return b;
       });
@@ -135,16 +124,7 @@
         <BestelluebersichtSpeise {speiseBestellt} />
       {/each}
     </div>
-    {#if liefern}
-      <div class="menu_bestellung-preis">
-        <p>Liefergebühr:</p>
-        <h3>{liefergebühr.toFixed(2)}€</h3>
-      </div>
-    {/if}
-    <div class="menu_bestellung-preis">
-      <p>Gesamtpreis:</p>
-      <h2>{gesamtpreisTemp.toFixed(2)}€</h2>
-    </div>
+    <Gesamtpreis {auswahl}/>
     {#if modal}
       <svelte:component this={modal} />
     {/if}

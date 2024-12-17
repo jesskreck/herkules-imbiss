@@ -5,7 +5,8 @@ export const bestellungStore = writable<Bestellung>({
   nr: 0,
   speisen: [],
   gesamtpreis: 0,
-  discount: null,
+  liefergebuehr: 0,
+  discountRate: null,
   eingangszeit: new Date(),
   abholzeit: new Date(),
 });

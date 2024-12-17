@@ -204,11 +204,6 @@ h6 {
       h2 {
         margin-bottom: $sm-space;
       }
-
-      &--discount {
-        display: inline-flex;
-        align-items: baseline;
-      }
     }
   }
 }
@@ -357,6 +352,10 @@ button {
   &-number {
     line-height: 100%;
     color: $primary;
+
+    &.discount {
+      color: $secondary;
+    }
   }
 
   h2 {
