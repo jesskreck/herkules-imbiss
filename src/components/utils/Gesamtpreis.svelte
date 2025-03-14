@@ -18,7 +18,7 @@
 
   // Liefergebühr nur, wenn Gesamtpreis ≤ 30 €
   $: bestellung.liefergebuehr =
-    liefern && bestellung.gesamtpreis <= 30 ? liefergebühr : 0;
+    liefern && bestellung.gesamtpreis < 30 ? liefergebühr : 0;
 
   // Berechne Preis inklusive optionaler Liefergebühr und optionalem Discount
   $: gesamtpreisMitOptionen =
@@ -41,7 +41,7 @@
   <!-- zeige Liefergebuehr -->
   <div class="menu_bestellung-preis">
     <p>Liefergebühr:</p>
-    <h3>{liefergebühr.toFixed(2)}€</h3>
+    <h3>{(bestellung.liefergebuehr ?? 0).toFixed(2)}€</h3>
   </div>
 {/if}
 
