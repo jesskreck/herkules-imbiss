@@ -16,8 +16,9 @@
   let liefergebühr = 3;
   $: liefern = auswahl === BestellTyp.c;
 
-  // Aktualisiere die Liefergebühr im Store
-  $: bestellung.liefergebuehr = liefern ? liefergebühr : 0;
+  // Liefergebühr nur, wenn Gesamtpreis ≤ 30 €
+  $: bestellung.liefergebuehr =
+    liefern && bestellung.gesamtpreis <= 30 ? liefergebühr : 0;
 
   // Berechne Preis inklusive optionaler Liefergebühr und optionalem Discount
   $: gesamtpreisMitOptionen =
@@ -44,9 +45,7 @@
   </div>
 {/if}
 
-<div
-  class="menu_bestellung-preis"
->
+<div class="menu_bestellung-preis">
   <p>Gesamtpreis:</p>
 
   {#if bestellung.discountRate && !liefern}
