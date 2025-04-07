@@ -71,7 +71,8 @@ Die App kommuniziert mit einem lokalen Drucker-Server, der auf Port 3001 läuft.
 - Tagesabschlussberichte mit Gesamtumsatz und Verkaufsstatistiken
 
 ## Drucker-Server
-Der Drucker-Server besteht aus folgenden Komponenten:
+Der Drucker-Server ist in einem separaten Repository verfügbar: [https://github.com/jesskreck/imbiss-app-printer](https://github.com/jesskreck/imbiss-app-printer)
+Er besteht aus folgenden Komponenten:
 
 - **printer-server.js**: Express-Server, der Druckaufträge verarbeitet
 - **orderCounter.js**: Verwaltet tagesaktuelle Bestellnummern
