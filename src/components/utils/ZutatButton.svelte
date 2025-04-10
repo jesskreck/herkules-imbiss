@@ -13,12 +13,28 @@
     if (!canToggle) return;
 
     let aufpreis = 0;
-    zutat.menge = zutat.menge === 0 ? 1 : 0;
 
-    if (zutat.menge === 1 && zutat.preis) {
-      aufpreis = zutat.preis;
-    } else if (zutat.menge === 0 && zutat.preis) {
-      aufpreis = -zutat.preis;
+    // Spezielles Verhalten für Mayo (3-stufiger Toggle)
+    if (zutat.name === "Mayo") {
+      // Zyklus 0 -> 1 -> 2 -> 0
+      zutat.menge = (zutat.menge + 1) % 3;
+
+      // Preisberechnung basierend auf der Änderung
+      if (zutat.menge === 1 && zutat.preis) {
+        aufpreis = zutat.preis;
+      } else if (zutat.menge === 2 && zutat.preis) {
+        aufpreis = zutat.preis; // Zusätzlicher Preis für zweite Mayo
+      } else if (zutat.menge === 0 && zutat.preis) {
+        aufpreis = -zutat.preis * 2; // Beide Preise abziehen
+      }
+    } else {
+      zutat.menge = zutat.menge === 0 ? 1 : 0;
+
+      if (zutat.menge === 1 && zutat.preis) {
+        aufpreis = zutat.preis;
+      } else if (zutat.menge === 0 && zutat.preis) {
+        aufpreis = -zutat.preis;
+      }
     }
 
     dispatch("mengeChanged", { zutat, aufpreis });
@@ -28,12 +44,13 @@
 <button
   class="btn-zutat {zutat.name}"
   class:deactived={zutat.menge === 0 && !disabled}
+  class:double={zutat.name === "Mayo" && zutat.menge === 2}
   class:ueberbacken={zutat.überbacken}
   on:click={toggleMenge}
 >
   <ZutatIcon name={zutat.name} />
   {zutat.name}
   {#if zutat.preis}
-    +{zutat.preis.toFixed(2)}€
+    +{(zutat.preis * (zutat.menge > 0 ? zutat.menge : 1)).toFixed(2)}€
   {/if}
 </button>
