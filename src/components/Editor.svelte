@@ -35,7 +35,7 @@
   
   // Speisegruppen
   const speisenMitGyrosteller = takeNrRange(speise, [16, 22]);
-  const speisenMitSize = takeNrRange(speise, [16, 32]);
+  const speisenMitSize = takeNrRange(speise, [16, 32]) || takeNrExact(speise, [2, 6]);
   const KrautZwiebelnKlein = takeNrRange(speise, [8, 15], [23, 32]);
   const baustelle = takeNrExact(speise, [38, 39]);
 

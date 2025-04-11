@@ -60,8 +60,18 @@
   <Gesamtpreis {auswahl} />
 
   <div class="flex">
-    <button class="btn-primary stretch" on:click={() => openCheckout(auswahl)}
-      ><h3>OK?</h3></button
-    >
+    <button 
+    class="btn-primary stretch" 
+    on:click={() => openCheckout(auswahl)}
+    disabled={auswahl === BestellTyp.c && bestellung.gesamtpreis < 20}
+  >
+    <h3>
+      {#if auswahl === BestellTyp.c && bestellung.gesamtpreis < 20}
+        Lieferung erst ab 20€
+      {:else}
+        OK?
+      {/if}
+    </h3>
+  </button>
   </div>
 </div>
